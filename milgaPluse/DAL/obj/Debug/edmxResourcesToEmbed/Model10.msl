@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MilgaPluseDBModel11StoreContainer" CdmEntityContainer="MilgaPluseDBEntities">
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="IsTypeOf(MilgaPluseDBModel11.sysdiagrams)">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ToraMen">
+      <EntityTypeMapping TypeName="IsTypeOf(MilgaPluseDBModel11.ToraMen)">
+        <MappingFragment StoreEntitySet="ToraMen">
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Identity" ColumnName="Identity" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Telephon" ColumnName="Telephon" />
+          <ScalarProperty Name="CellularTelephone1" ColumnName="CellularTelephone1" />
+          <ScalarProperty Name="CellularTelephone2" ColumnName="CellularTelephone2" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Street" ColumnName="Street" />
+          <ScalarProperty Name="BuildingNumber" ColumnName="BuildingNumber" />
+          <ScalarProperty Name="HomeNumber" ColumnName="HomeNumber" />
+          <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+          <ScalarProperty Name="Children" ColumnName="Children" />
+          <ScalarProperty Name="FullDay" ColumnName="FullDay" />
+          <ScalarProperty Name="DoingTest" ColumnName="DoingTest" />
+          <ScalarProperty Name="RefundTransportation" ColumnName="RefundTransportation" />
+          <ScalarProperty Name="IsManager" ColumnName="IsManager" />
+          <ScalarProperty Name="LearnMusar" ColumnName="LearnMusar" />
+          <ScalarProperty Name="BirthDate_hebrew" ColumnName="BirthDate_hebrew" />
+          <ScalarProperty Name="BirthDate_gregorian" ColumnName="BirthDate_gregorian" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Documents">
+      <EntityTypeMapping TypeName="IsTypeOf(MilgaPluseDBModel11.Document)">
+        <MappingFragment StoreEntitySet="Documents">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="NameFile" ColumnName="NameFile" />
+          <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+          <ScalarProperty Name="Extension" ColumnName="Extension" />
+          <ScalarProperty Name="ContentType" ColumnName="ContentType" />
+          <ScalarProperty Name="FileData" ColumnName="FileData" />
+          <ScalarProperty Name="FileSize" ColumnName="FileSize" />
+          <ScalarProperty Name="UploadDate" ColumnName="UploadDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cities">
+      <EntityTypeMapping TypeName="MilgaPluseDBModel11.City">
+        <MappingFragment StoreEntitySet="City">
+          <ScalarProperty Name="City1" ColumnName="City" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Scholarships">
+      <EntityTypeMapping TypeName="MilgaPluseDBModel11.Scholarship">
+        <MappingFragment StoreEntitySet="Scholarships">
+          <ScalarProperty Name="Confirm" ColumnName="Confirm" />
+          <ScalarProperty Name="RemainderDebt" ColumnName="RemainderDebt" />
+          <ScalarProperty Name="Donation" ColumnName="Donation" />
+          <ScalarProperty Name="Refund" ColumnName="Refund" />
+          <ScalarProperty Name="ScholarshipsAndLoan" ColumnName="ScholarshipsAndLoan" />
+          <ScalarProperty Name="Scholarship1" ColumnName="Scholarship" />
+          <ScalarProperty Name="ReligiousMinistry" ColumnName="ReligiousMinistry" />
+          <ScalarProperty Name="NoteHolidayScholarship" ColumnName="NoteHolidayScholarship" />
+          <ScalarProperty Name="HolidayScholarship" ColumnName="HolidayScholarship" />
+          <ScalarProperty Name="ExcellenceScholarship" ColumnName="ExcellenceScholarship" />
+          <ScalarProperty Name="SumForMark" ColumnName="SumForMark" />
+          <ScalarProperty Name="Mark" ColumnName="Mark" />
+          <ScalarProperty Name="SumForAtmada" ColumnName="SumForAtmada" />
+          <ScalarProperty Name="NoteAtmada" ColumnName="NoteAtmada" />
+          <ScalarProperty Name="Atmada" ColumnName="Atmada" />
+          <ScalarProperty Name="addToShmiratSdarimBecauseGoodTest" ColumnName="addToShmiratSdarimBecauseGoodTest" />
+          <ScalarProperty Name="SumForShmiratSdarim" ColumnName="SumForShmiratSdarim" />
+          <ScalarProperty Name="ShmiratSdarim" ColumnName="ShmiratSdarim" />
+          <ScalarProperty Name="SumForAbsence" ColumnName="SumForAbsence" />
+          <ScalarProperty Name="NoteAbsence" ColumnName="NoteAbsence" />
+          <ScalarProperty Name="Absence" ColumnName="Absence" />
+          <ScalarProperty Name="SumForMusar" ColumnName="SumForMusar" />
+          <ScalarProperty Name="Musar" ColumnName="Musar" />
+          <ScalarProperty Name="Basic" ColumnName="Basic" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="HebrewYear" ColumnName="HebrewYear" />
+          <ScalarProperty Name="HebrewMonth" ColumnName="HebrewMonth" />
+          <ScalarProperty Name="Identity" ColumnName="Identity" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Loans">
+      <EntityTypeMapping TypeName="MilgaPluseDBModel11.Loan">
+        <MappingFragment StoreEntitySet="Loans">
+          <ScalarProperty Name="LoanSum" ColumnName="LoanSum" />
+          <ScalarProperty Name="WayOfPay" ColumnName="WayOfPay" />
+          <ScalarProperty Name="NoteOfReturnLoan" ColumnName="NoteOfReturnLoan" />
+          <ScalarProperty Name="NoteOfGetLoan" ColumnName="NoteOfGetLoan" />
+          <ScalarProperty Name="AccountNumberBorrower" ColumnName="AccountNumberBorrower" />
+          <ScalarProperty Name="TakeOrBack" ColumnName="TakeOrBack" />
+          <ScalarProperty Name="BorrowerIdentity" ColumnName="BorrowerIdentity" />
+          <ScalarProperty Name="DateReturnLoan" ColumnName="DateReturnLoan" />
+          <ScalarProperty Name="ScholarshipDate" ColumnName="ScholarshipDate" />
+          <ScalarProperty Name="DateGetLoan" ColumnName="DateGetLoan" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BankAccounts">
+      <EntityTypeMapping TypeName="MilgaPluseDBModel11.BankAccount">
+        <MappingFragment StoreEntitySet="BankAccounts">
+          <ScalarProperty Name="BankNumber" ColumnName="BankNumber" />
+          <ScalarProperty Name="BankName" ColumnName="BankName" />
+          <ScalarProperty Name="Identity" ColumnName="Identity" />
+          <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+          <ScalarProperty Name="BranchNumber" ColumnName="BranchNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

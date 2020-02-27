@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="06c90c3a44e6416381a0ba9770605486" Name="Diagram1" ZoomLevel="68">
+        <EntityTypeShape EntityType="MilgaPluseDBModel.BankAccounts" Width="1.5" PointX="4.625" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MilgaPluseDBModel.sysdiagrams" Width="1.5" PointX="6.375" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MilgaPluseDBModel.City" Width="1.5" PointX="4.625" PointY="6.25" />
+        <EntityTypeShape EntityType="MilgaPluseDBModel.Loans" Width="1.5" PointX="4.625" PointY="3.125" />
+        <EntityTypeShape EntityType="MilgaPluseDBModel.Users" Width="1.5" PointX="2.75" PointY="0.75" />
+        <AssociationConnector Association="MilgaPluseDBModel.FK_BankAccounts_Users" />
+        <AssociationConnector Association="MilgaPluseDBModel.FK_Users_City1" />
+        <AssociationConnector Association="MilgaPluseDBModel.FK_Loans_Users" />
+        <EntityTypeShape EntityType="MilgaPluseDBModel.Scholarships" Width="1.5" PointX="0.875" PointY="0.75" />
+        <AssociationConnector Association="MilgaPluseDBModel.FK_Scholarships_Users" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

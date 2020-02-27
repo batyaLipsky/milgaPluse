@@ -1,0 +1,241 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MilgaPluseDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="BankAccounts">
+    <Key>
+      <PropertyRef Name="AccountNumber" />
+    </Key>
+    <Property Name="AccountNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Identity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BankName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="BankNumber" Type="Int32" Nullable="false" />
+    <Property Name="BranchNumber" Type="Int32" Nullable="false" />
+    <Property Name="SumForLeft" Type="Int32" />
+    <NavigationProperty Name="Loans" Relationship="Self.FK_Loans_BankAccounts" FromRole="BankAccounts" ToRole="Loans" />
+    <NavigationProperty Name="Loans1" Relationship="Self.FK_Loans_BankAccounts1" FromRole="BankAccounts" ToRole="Loans" />
+  </EntityType>
+  <EntityType Name="Children">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BirthDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ParentIdentity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Married" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="ToraMen" Relationship="Self.FK_Children_ToraMen" FromRole="Children" ToRole="ToraMen" />
+  </EntityType>
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="City1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="ToraMen" Relationship="Self.FK_ToraMen_City" FromRole="City" ToRole="ToraMen" />
+  </EntityType>
+  <EntityType Name="Loans">
+    <Key>
+      <PropertyRef Name="Date" />
+    </Key>
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LenderIdentity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="BorrowerIdentity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TakeOrBack" Type="Boolean" Nullable="false" />
+    <Property Name="LastNameLender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LastNameBorrower" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="AccountNumberLender" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AccountNumberBorrower" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Aote" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="WayOfPay" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="BankAccounts" Relationship="Self.FK_Loans_BankAccounts" FromRole="Loans" ToRole="BankAccounts" />
+    <NavigationProperty Name="BankAccounts1" Relationship="Self.FK_Loans_BankAccounts1" FromRole="Loans" ToRole="BankAccounts" />
+  </EntityType>
+  <EntityType Name="Scholarships">
+    <Key>
+      <PropertyRef Name="Identity" />
+      <PropertyRef Name="Date" />
+    </Key>
+    <Property Name="Identity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Basic" Type="Int32" Nullable="false" />
+    <Property Name="Musar" Type="Int32" Nullable="false" />
+    <Property Name="Absence" Type="Int32" Nullable="false" />
+    <Property Name="NoteAbsence" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ShmiratSdarim" Type="Int32" Nullable="false" />
+    <Property Name="Atmada" Type="Int32" Nullable="false" />
+    <Property Name="NoteAtmada" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Mark" Type="Int32" />
+    <Property Name="ExcellenceScholarship" Type="Int32" />
+    <Property Name="HolidayScholarship" Type="Int32" />
+    <Property Name="NoteHolidayScholarship" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ReligiousMinistry" Type="Int32" Nullable="false" />
+    <Property Name="Scholarships1" Type="Int32" Nullable="false" />
+    <Property Name="ScholarshipsAndLoan" Type="Int32" Nullable="false" />
+    <Property Name="Refund" Type="Int32" Nullable="false" />
+    <Property Name="Donation" Type="Int32" />
+    <Property Name="RemainderDebt" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="ToraMen" Relationship="Self.FK_Scholarships_ToraMen" FromRole="Scholarships" ToRole="ToraMen" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="ToraMen">
+    <Key>
+      <PropertyRef Name="Identity" />
+    </Key>
+    <Property Name="Identity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Telephon" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CellularTelephone1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CellularTelephone2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="City" Type="Int32" Nullable="false" />
+    <Property Name="Street" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="BuildingNumber" Type="Int32" Nullable="false" />
+    <Property Name="HomeNumber" Type="Int32" />
+    <Property Name="ZipCode" Type="Int32" />
+    <Property Name="BirthDate_year" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BirthDate_month" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BirthDate_day" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Children" Type="Int32" Nullable="false" />
+    <Property Name="FullDay" Type="Int32" Nullable="false" />
+    <Property Name="DoingTest" Type="Int32" Nullable="false" />
+    <Property Name="RefundTransportation" Type="Decimal" Precision="19" Scale="4" />
+    <NavigationProperty Name="Children1" Relationship="Self.FK_Children_ToraMen" FromRole="ToraMen" ToRole="Children" />
+    <NavigationProperty Name="City1" Relationship="Self.FK_ToraMen_City" FromRole="ToraMen" ToRole="City" />
+    <NavigationProperty Name="Scholarships" Relationship="Self.FK_Scholarships_ToraMen" FromRole="ToraMen" ToRole="Scholarships" />
+    <NavigationProperty Name="ToraMen1" Relationship="Self.FK_ToraMen_ToraMen" FromRole="ToraMen" ToRole="ToraMen1" />
+    <NavigationProperty Name="ToraMen2" Relationship="Self.FK_ToraMen_ToraMen" FromRole="ToraMen1" ToRole="ToraMen" />
+    <NavigationProperty Name="ToraMen11" Relationship="Self.FK_ToraMen_ToraMen1" FromRole="ToraMen" ToRole="ToraMen1" />
+    <NavigationProperty Name="ToraMen3" Relationship="Self.FK_ToraMen_ToraMen1" FromRole="ToraMen1" ToRole="ToraMen" />
+  </EntityType>
+  <Association Name="FK_Loans_BankAccounts">
+    <End Role="BankAccounts" Type="Self.BankAccounts" Multiplicity="0..1" />
+    <End Role="Loans" Type="Self.Loans" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BankAccounts">
+        <PropertyRef Name="AccountNumber" />
+      </Principal>
+      <Dependent Role="Loans">
+        <PropertyRef Name="AccountNumberLender" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Loans_BankAccounts1">
+    <End Role="BankAccounts" Type="Self.BankAccounts" Multiplicity="0..1" />
+    <End Role="Loans" Type="Self.Loans" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BankAccounts">
+        <PropertyRef Name="AccountNumber" />
+      </Principal>
+      <Dependent Role="Loans">
+        <PropertyRef Name="AccountNumberBorrower" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Children_ToraMen">
+    <End Role="ToraMen" Type="Self.ToraMen" Multiplicity="1" />
+    <End Role="Children" Type="Self.Children" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ToraMen">
+        <PropertyRef Name="Identity" />
+      </Principal>
+      <Dependent Role="Children">
+        <PropertyRef Name="ParentIdentity" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ToraMen_City">
+    <End Role="City" Type="Self.City" Multiplicity="1" />
+    <End Role="ToraMen" Type="Self.ToraMen" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ToraMen">
+        <PropertyRef Name="City" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Scholarships_ToraMen">
+    <End Role="ToraMen" Type="Self.ToraMen" Multiplicity="1" />
+    <End Role="Scholarships" Type="Self.Scholarships" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ToraMen">
+        <PropertyRef Name="Identity" />
+      </Principal>
+      <Dependent Role="Scholarships">
+        <PropertyRef Name="Identity" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ToraMen_ToraMen">
+    <End Role="ToraMen" Type="Self.ToraMen" Multiplicity="1" />
+    <End Role="ToraMen1" Type="Self.ToraMen" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="ToraMen">
+        <PropertyRef Name="Identity" />
+      </Principal>
+      <Dependent Role="ToraMen1">
+        <PropertyRef Name="Identity" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ToraMen_ToraMen1">
+    <End Role="ToraMen" Type="Self.ToraMen" Multiplicity="1" />
+    <End Role="ToraMen1" Type="Self.ToraMen" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="ToraMen">
+        <PropertyRef Name="Identity" />
+      </Principal>
+      <Dependent Role="ToraMen1">
+        <PropertyRef Name="Identity" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MilgaPluseDBEntities24" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="BankAccounts" EntityType="Self.BankAccounts" />
+    <EntitySet Name="Children" EntityType="Self.Children" />
+    <EntitySet Name="City" EntityType="Self.City" />
+    <EntitySet Name="Loans" EntityType="Self.Loans" />
+    <EntitySet Name="Scholarships" EntityType="Self.Scholarships" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="ToraMen" EntityType="Self.ToraMen" />
+    <AssociationSet Name="FK_Loans_BankAccounts" Association="Self.FK_Loans_BankAccounts">
+      <End Role="BankAccounts" EntitySet="BankAccounts" />
+      <End Role="Loans" EntitySet="Loans" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Loans_BankAccounts1" Association="Self.FK_Loans_BankAccounts1">
+      <End Role="BankAccounts" EntitySet="BankAccounts" />
+      <End Role="Loans" EntitySet="Loans" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Children_ToraMen" Association="Self.FK_Children_ToraMen">
+      <End Role="ToraMen" EntitySet="ToraMen" />
+      <End Role="Children" EntitySet="Children" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ToraMen_City" Association="Self.FK_ToraMen_City">
+      <End Role="City" EntitySet="City" />
+      <End Role="ToraMen" EntitySet="ToraMen" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Scholarships_ToraMen" Association="Self.FK_Scholarships_ToraMen">
+      <End Role="ToraMen" EntitySet="ToraMen" />
+      <End Role="Scholarships" EntitySet="Scholarships" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ToraMen_ToraMen" Association="Self.FK_ToraMen_ToraMen">
+      <End Role="ToraMen" EntitySet="ToraMen" />
+      <End Role="ToraMen1" EntitySet="ToraMen" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ToraMen_ToraMen1" Association="Self.FK_ToraMen_ToraMen1">
+      <End Role="ToraMen" EntitySet="ToraMen" />
+      <End Role="ToraMen1" EntitySet="ToraMen" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

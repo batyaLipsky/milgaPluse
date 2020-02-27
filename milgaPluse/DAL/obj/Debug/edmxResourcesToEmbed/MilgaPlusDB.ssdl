@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MilgaPluseDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="BankAccounts">
+    <Key>
+      <PropertyRef Name="BranchNumber" />
+      <PropertyRef Name="AccountNumber" />
+    </Key>
+    <Property Name="BranchNumber" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="AccountNumber" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Identity" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="BankName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="BankNumber" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CityName" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Loans">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ReturnLoanGeorgianDate" Type="datetime" Nullable="false" />
+    <Property Name="ReturnLoanHebrewDate" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="BorrowerIdentity" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="AccountNumberBorrower" Type="varchar" MaxLength="50" />
+    <Property Name="NoteOfReturnLoan" Type="varchar" MaxLength="50" />
+    <Property Name="WayOfPay" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LoanSum" Type="int" Nullable="false" />
+    <Property Name="DebtBalance" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Scholarships">
+    <Key>
+      <PropertyRef Name="Identity" />
+      <PropertyRef Name="HebrewMonth" />
+      <PropertyRef Name="HebrewYear" />
+      <PropertyRef Name="Date" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Identity" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="HebrewMonth" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="HebrewYear" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Date" Type="date" Nullable="false" />
+    <Property Name="Basic" Type="int" Nullable="false" />
+    <Property Name="Musar" Type="bit" Nullable="false" />
+    <Property Name="SumForMusar" Type="int" />
+    <Property Name="Absence" Type="int" Nullable="false" />
+    <Property Name="NoteAbsence" Type="varchar" MaxLength="50" />
+    <Property Name="SumForAbsence" Type="int" Nullable="false" />
+    <Property Name="ShmiratSdarim" Type="int" Nullable="false" />
+    <Property Name="SumForShmiratSdarim" Type="int" Nullable="false" />
+    <Property Name="addToShmiratSdarimBecauseGoodTest" Type="int" />
+    <Property Name="Atmada" Type="int" Nullable="false" />
+    <Property Name="NoteAtmada" Type="varchar" MaxLength="50" />
+    <Property Name="SumForAtmada" Type="int" Nullable="false" />
+    <Property Name="Mark" Type="int" />
+    <Property Name="SumForMark" Type="int" />
+    <Property Name="ExcellenceScholarship" Type="int" />
+    <Property Name="HolidayScholarship" Type="int" />
+    <Property Name="NoteHolidayScholarship" Type="varchar" MaxLength="50" />
+    <Property Name="ReligiousMinistry" Type="int" Nullable="false" />
+    <Property Name="Scholarship" Type="int" Nullable="false" />
+    <Property Name="ScholarshipsAndLoan" Type="int" Nullable="false" />
+    <Property Name="Refund" Type="int" Nullable="false" />
+    <Property Name="Donation" Type="int" />
+    <Property Name="RemainderDebt" Type="int" Nullable="false" />
+    <Property Name="Confirm" Type="bit" Nullable="false" />
+    <Property Name="RefundTransportation" Type="int" />
+    <Property Name="NoteGeneral" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Identity" />
+    </Key>
+    <Property Name="Identity" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="Telephon" Type="varchar" MaxLength="50" />
+    <Property Name="CellularTelephone1" Type="varchar" MaxLength="50" />
+    <Property Name="CellularTelephone2" Type="varchar" MaxLength="50" />
+    <Property Name="City" Type="int" Nullable="false" />
+    <Property Name="Street" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="BuildingNumber" Type="int" Nullable="false" />
+    <Property Name="HomeNumber" Type="int" />
+    <Property Name="ZipCode" Type="int" />
+    <Property Name="BirthDate_hebrew" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="BirthDate_gregorian" Type="date" Nullable="false" />
+    <Property Name="Children" Type="int" Nullable="false" />
+    <Property Name="FullDay" Type="bit" />
+    <Property Name="DoingTest" Type="bit" />
+    <Property Name="IsManager" Type="bit" />
+    <Property Name="LearnNowadays" Type="bit" Nullable="false" />
+    <Property Name="DateOfLeave" Type="date" />
+  </EntityType>
+  <Association Name="FK_BankAccounts_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="BankAccounts" Type="Self.BankAccounts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Identity" />
+      </Principal>
+      <Dependent Role="BankAccounts">
+        <PropertyRef Name="Identity" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Loans_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Loans" Type="Self.Loans" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Identity" />
+      </Principal>
+      <Dependent Role="Loans">
+        <PropertyRef Name="BorrowerIdentity" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Scholarships_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Scholarships" Type="Self.Scholarships" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Identity" />
+      </Principal>
+      <Dependent Role="Scholarships">
+        <PropertyRef Name="Identity" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_City1">
+    <End Role="City" Type="Self.City" Multiplicity="1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="City" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MilgaPluseDBModelStoreContainer">
+    <EntitySet Name="BankAccounts" EntityType="Self.BankAccounts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Loans" EntityType="Self.Loans" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Scholarships" EntityType="Self.Scholarships" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_BankAccounts_Users" Association="Self.FK_BankAccounts_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="BankAccounts" EntitySet="BankAccounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Loans_Users" Association="Self.FK_Loans_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Loans" EntitySet="Loans" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Scholarships_Users" Association="Self.FK_Scholarships_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Scholarships" EntitySet="Scholarships" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_City1" Association="Self.FK_Users_City1">
+      <End Role="City" EntitySet="City" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

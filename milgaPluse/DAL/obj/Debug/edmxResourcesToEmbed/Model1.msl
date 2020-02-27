@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MilgaPluseDBModelStoreContainer" CdmEntityContainer="MilgaPluseDBEntities1">
+    <EntitySetMapping Name="BankAccounts">
+      <EntityTypeMapping TypeName="MilgaPluseDBModel.BankAccounts">
+        <MappingFragment StoreEntitySet="BankAccounts">
+          <ScalarProperty Name="accountNumber" ColumnName="accountNumber" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="bankName" ColumnName="bankName" />
+          <ScalarProperty Name="bankNumber" ColumnName="bankNumber" />
+          <ScalarProperty Name="branchNumber" ColumnName="branchNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Children">
+      <EntityTypeMapping TypeName="MilgaPluseDBModel.Children">
+        <MappingFragment StoreEntitySet="Children">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="birthDate" ColumnName="birthDate" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="lastName" ColumnName="lastName" />
+          <ScalarProperty Name="parentID" ColumnName="parentID" />
+          <ScalarProperty Name="married" ColumnName="married" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Loans">
+      <EntityTypeMapping TypeName="MilgaPluseDBModel.Loans">
+        <MappingFragment StoreEntitySet="Loans">
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="lenderID" ColumnName="lenderID" />
+          <ScalarProperty Name="borrowerID" ColumnName="borrowerID" />
+          <ScalarProperty Name="takeOrBack" ColumnName="takeOrBack" />
+          <ScalarProperty Name="firstNameLender" ColumnName="firstNameLender" />
+          <ScalarProperty Name="lastNameLender" ColumnName="lastNameLender" />
+          <ScalarProperty Name="firstNameBorrower" ColumnName="firstNameBorrower" />
+          <ScalarProperty Name="lastNameBorrower" ColumnName="lastNameBorrower" />
+          <ScalarProperty Name="wayOfReturn" ColumnName="wayOfReturn" />
+          <ScalarProperty Name="accountNumberLender" ColumnName="accountNumberLender" />
+          <ScalarProperty Name="accountNumberBorrower" ColumnName="accountNumberBorrower" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Scholarships">
+      <EntityTypeMapping TypeName="MilgaPluseDBModel.Scholarships">
+        <MappingFragment StoreEntitySet="Scholarships">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="basic" ColumnName="basic" />
+          <ScalarProperty Name="Musar" ColumnName="Musar" />
+          <ScalarProperty Name="dailyRoutine" ColumnName="dailyRoutine" />
+          <ScalarProperty Name="continuous" ColumnName="continuous" />
+          <ScalarProperty Name="lastMonthMark" ColumnName="lastMonthMark" />
+          <ScalarProperty Name="excellenceScholarship" ColumnName="excellenceScholarship" />
+          <ScalarProperty Name="holidayScholarship" ColumnName="holidayScholarship" />
+          <ScalarProperty Name="religiousMinistry" ColumnName="religiousMinistry" />
+          <ScalarProperty Name="Scholarships1" ColumnName="Scholarships" />
+          <ScalarProperty Name="ScholarshipsAndLoan" ColumnName="ScholarshipsAndLoan" />
+          <ScalarProperty Name="refund" ColumnName="refund" />
+          <ScalarProperty Name="donation" ColumnName="donation" />
+          <ScalarProperty Name="remainderDebt" ColumnName="remainderDebt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="MilgaPluseDBModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ToraMen">
+      <EntityTypeMapping TypeName="MilgaPluseDBModel.ToraMen">
+        <MappingFragment StoreEntitySet="ToraMen">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="lastName" ColumnName="lastName" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="telephon" ColumnName="telephon" />
+          <ScalarProperty Name="cellularTelephone1" ColumnName="cellularTelephone1" />
+          <ScalarProperty Name="cellularTelephone2" ColumnName="cellularTelephone2" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="street" ColumnName="street" />
+          <ScalarProperty Name="buildingNumber" ColumnName="buildingNumber" />
+          <ScalarProperty Name="homeNumber" ColumnName="homeNumber" />
+          <ScalarProperty Name="zipCode" ColumnName="zipCode" />
+          <ScalarProperty Name="birthDate_year" ColumnName="birthDate_year" />
+          <ScalarProperty Name="birthDate_month" ColumnName="birthDate_month" />
+          <ScalarProperty Name="birthDate_day" ColumnName="birthDate_day" />
+          <ScalarProperty Name="children" ColumnName="children" />
+          <ScalarProperty Name="fullDay" ColumnName="fullDay" />
+          <ScalarProperty Name="doingTest" ColumnName="doingTest" />
+          <ScalarProperty Name="refundTransportation" ColumnName="refundTransportation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

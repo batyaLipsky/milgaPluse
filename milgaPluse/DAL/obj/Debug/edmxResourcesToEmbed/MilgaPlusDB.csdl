@@ -1,0 +1,190 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MilgaPluseDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="BankAccounts">
+    <Key>
+      <PropertyRef Name="BranchNumber" />
+      <PropertyRef Name="AccountNumber" />
+    </Key>
+    <Property Name="BranchNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="AccountNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Identity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="BankName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="BankNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Users" Relationship="MilgaPluseDBModel.FK_BankAccounts_Users" FromRole="BankAccounts" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityContainer Name="MilgaPluseDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="BankAccounts" EntityType="Self.BankAccounts" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="City" EntityType="MilgaPluseDBModel.City" />
+    <EntitySet Name="Loans" EntityType="MilgaPluseDBModel.Loans" />
+    <EntitySet Name="Users" EntityType="MilgaPluseDBModel.Users" />
+    <AssociationSet Name="FK_BankAccounts_Users" Association="MilgaPluseDBModel.FK_BankAccounts_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="BankAccounts" EntitySet="BankAccounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_City1" Association="MilgaPluseDBModel.FK_Users_City1">
+      <End Role="City" EntitySet="City" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Loans_Users" Association="MilgaPluseDBModel.FK_Loans_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Loans" EntitySet="Loans" />
+    </AssociationSet>
+    <EntitySet Name="Scholarships" EntityType="MilgaPluseDBModel.Scholarships" />
+    <AssociationSet Name="FK_Scholarships_Users" Association="MilgaPluseDBModel.FK_Scholarships_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Scholarships" EntitySet="Scholarships" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CityName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Users" Relationship="MilgaPluseDBModel.FK_Users_City1" FromRole="City" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Loans">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ReturnLoanGeorgianDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ReturnLoanHebrewDate" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BorrowerIdentity" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AccountNumberBorrower" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="NoteOfReturnLoan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="WayOfPay" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LoanSum" Type="Int32" Nullable="false" />
+    <Property Name="DebtBalance" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Users" Relationship="MilgaPluseDBModel.FK_Loans_Users" FromRole="Loans" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Identity" />
+    </Key>
+    <Property Name="Identity" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Telephon" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CellularTelephone1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CellularTelephone2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="City" Type="Int32" Nullable="false" />
+    <Property Name="Street" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BuildingNumber" Type="Int32" Nullable="false" />
+    <Property Name="HomeNumber" Type="Int32" />
+    <Property Name="ZipCode" Type="Int32" />
+    <Property Name="BirthDate_hebrew" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BirthDate_gregorian" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Children" Type="Int32" Nullable="false" />
+    <Property Name="FullDay" Type="Boolean" />
+    <Property Name="DoingTest" Type="Boolean" />
+    <Property Name="IsManager" Type="Boolean" />
+    <Property Name="LearnNowadays" Type="Boolean" Nullable="false" />
+    <Property Name="DateOfLeave" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="BankAccounts" Relationship="MilgaPluseDBModel.FK_BankAccounts_Users" FromRole="Users" ToRole="BankAccounts" />
+    <NavigationProperty Name="City1" Relationship="MilgaPluseDBModel.FK_Users_City1" FromRole="Users" ToRole="City" />
+    <NavigationProperty Name="Loans" Relationship="MilgaPluseDBModel.FK_Loans_Users" FromRole="Users" ToRole="Loans" />
+    <NavigationProperty Name="Scholarships" Relationship="MilgaPluseDBModel.FK_Scholarships_Users" FromRole="Users" ToRole="Scholarships" />
+  </EntityType>
+  <Association Name="FK_BankAccounts_Users">
+    <End Type="MilgaPluseDBModel.Users" Role="Users" Multiplicity="1" />
+    <End Type="MilgaPluseDBModel.BankAccounts" Role="BankAccounts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Identity" />
+      </Principal>
+      <Dependent Role="BankAccounts">
+        <PropertyRef Name="Identity" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_City1">
+    <End Type="MilgaPluseDBModel.City" Role="City" Multiplicity="1" />
+    <End Type="MilgaPluseDBModel.Users" Role="Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="City" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Loans_Users">
+    <End Type="MilgaPluseDBModel.Users" Role="Users" Multiplicity="1" />
+    <End Type="MilgaPluseDBModel.Loans" Role="Loans" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Identity" />
+      </Principal>
+      <Dependent Role="Loans">
+        <PropertyRef Name="BorrowerIdentity" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Scholarships">
+    <Key>
+      <PropertyRef Name="Identity" />
+      <PropertyRef Name="HebrewMonth" />
+      <PropertyRef Name="HebrewYear" />
+      <PropertyRef Name="Date" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Identity" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="HebrewMonth" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="HebrewYear" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Basic" Type="Int32" Nullable="false" />
+    <Property Name="Musar" Type="Boolean" Nullable="false" />
+    <Property Name="SumForMusar" Type="Int32" />
+    <Property Name="Absence" Type="Int32" Nullable="false" />
+    <Property Name="NoteAbsence" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SumForAbsence" Type="Int32" Nullable="false" />
+    <Property Name="ShmiratSdarim" Type="Int32" Nullable="false" />
+    <Property Name="SumForShmiratSdarim" Type="Int32" Nullable="false" />
+    <Property Name="addToShmiratSdarimBecauseGoodTest" Type="Int32" />
+    <Property Name="Atmada" Type="Int32" Nullable="false" />
+    <Property Name="NoteAtmada" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SumForAtmada" Type="Int32" Nullable="false" />
+    <Property Name="Mark" Type="Int32" />
+    <Property Name="SumForMark" Type="Int32" />
+    <Property Name="ExcellenceScholarship" Type="Int32" />
+    <Property Name="HolidayScholarship" Type="Int32" />
+    <Property Name="NoteHolidayScholarship" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ReligiousMinistry" Type="Int32" Nullable="false" />
+    <Property Name="Scholarship" Type="Int32" Nullable="false" />
+    <Property Name="ScholarshipsAndLoan" Type="Int32" Nullable="false" />
+    <Property Name="Refund" Type="Int32" Nullable="false" />
+    <Property Name="Donation" Type="Int32" />
+    <Property Name="RemainderDebt" Type="Int32" Nullable="false" />
+    <Property Name="Confirm" Type="Boolean" Nullable="false" />
+    <Property Name="RefundTransportation" Type="Int32" />
+    <Property Name="NoteGeneral" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Users" Relationship="MilgaPluseDBModel.FK_Scholarships_Users" FromRole="Scholarships" ToRole="Users" />
+  </EntityType>
+  <Association Name="FK_Scholarships_Users">
+    <End Type="MilgaPluseDBModel.Users" Role="Users" Multiplicity="1" />
+    <End Type="MilgaPluseDBModel.Scholarships" Role="Scholarships" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Identity" />
+      </Principal>
+      <Dependent Role="Scholarships">
+        <PropertyRef Name="Identity" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

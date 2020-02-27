@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MilgaPluseDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="BankAccounts">
+    <Key>
+      <PropertyRef Name="AccountNumber" />
+    </Key>
+    <Property Name="AccountNumber" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Identity" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" />
+    <Property Name="BankName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="BankNumber" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="BranchNumber" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="SumForLeft" Type="int" />
+  </EntityType>
+  <EntityType Name="Children">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BirthDate" Type="date" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ParentIdentity" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Married" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="City" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Loans">
+    <Key>
+      <PropertyRef Name="Date" />
+    </Key>
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="LenderIdentity" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="BorrowerIdentity" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="TakeOrBack" Type="bit" Nullable="false" />
+    <Property Name="LastNameLender" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastNameBorrower" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="AccountNumberLender" Type="varchar" MaxLength="50" />
+    <Property Name="AccountNumberBorrower" Type="varchar" MaxLength="50" />
+    <Property Name="Aote" Type="varchar" MaxLength="50" />
+    <Property Name="WayOfPay" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Scholarships">
+    <Key>
+      <PropertyRef Name="Identity" />
+      <PropertyRef Name="Date" />
+    </Key>
+    <Property Name="Identity" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Date" Type="date" Nullable="false" />
+    <Property Name="Basic" Type="int" Nullable="false" />
+    <Property Name="Musar" Type="int" Nullable="false" />
+    <Property Name="Absence" Type="int" Nullable="false" />
+    <Property Name="NoteAbsence" Type="varchar" MaxLength="50" />
+    <Property Name="ShmiratSdarim" Type="int" Nullable="false" />
+    <Property Name="Atmada" Type="int" Nullable="false" />
+    <Property Name="NoteAtmada" Type="varchar" MaxLength="50" />
+    <Property Name="Mark" Type="int" />
+    <Property Name="ExcellenceScholarship" Type="int" />
+    <Property Name="HolidayScholarship" Type="int" />
+    <Property Name="NoteHolidayScholarship" Type="varchar" MaxLength="50" />
+    <Property Name="ReligiousMinistry" Type="int" Nullable="false" />
+    <Property Name="Scholarships" Type="int" Nullable="false" />
+    <Property Name="ScholarshipsAndLoan" Type="int" Nullable="false" />
+    <Property Name="Refund" Type="int" Nullable="false" />
+    <Property Name="Donation" Type="int" />
+    <Property Name="RemainderDebt" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="ToraMen">
+    <Key>
+      <PropertyRef Name="Identity" />
+    </Key>
+    <Property Name="Identity" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="Telephon" Type="varchar" MaxLength="50" />
+    <Property Name="CellularTelephone1" Type="varchar" MaxLength="50" />
+    <Property Name="CellularTelephone2" Type="varchar" MaxLength="50" />
+    <Property Name="City" Type="int" Nullable="false" />
+    <Property Name="Street" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="BuildingNumber" Type="int" Nullable="false" />
+    <Property Name="HomeNumber" Type="int" />
+    <Property Name="ZipCode" Type="int" />
+    <Property Name="BirthDate_year" Type="varchar" MaxLength="50" />
+    <Property Name="BirthDate_month" Type="varchar" MaxLength="50" />
+    <Property Name="BirthDate_day" Type="varchar" MaxLength="50" />
+    <Property Name="Children" Type="int" Nullable="false" />
+    <Property Name="FullDay" Type="int" Nullable="false" />
+    <Property Name="DoingTest" Type="int" Nullable="false" />
+    <Property Name="RefundTransportation" Type="money" />
+  </EntityType>
+  <Association Name="FK_Children_ToraMen">
+    <End Role="ToraMen" Type="Self.ToraMen" Multiplicity="1" />
+    <End Role="Children" Type="Self.Children" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ToraMen">
+        <PropertyRef Name="Identity" />
+      </Principal>
+      <Dependent Role="Children">
+        <PropertyRef Name="ParentIdentity" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Scholarships_ToraMen">
+    <End Role="ToraMen" Type="Self.ToraMen" Multiplicity="1" />
+    <End Role="Scholarships" Type="Self.Scholarships" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ToraMen">
+        <PropertyRef Name="Identity" />
+      </Principal>
+      <Dependent Role="Scholarships">
+        <PropertyRef Name="Identity" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ToraMen_City">
+    <End Role="City" Type="Self.City" Multiplicity="1" />
+    <End Role="ToraMen" Type="Self.ToraMen" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ToraMen">
+        <PropertyRef Name="City" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ToraMen_ToraMen">
+    <End Role="ToraMen" Type="Self.ToraMen" Multiplicity="1" />
+    <End Role="ToraMen1" Type="Self.ToraMen" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="ToraMen">
+        <PropertyRef Name="Identity" />
+      </Principal>
+      <Dependent Role="ToraMen1">
+        <PropertyRef Name="Identity" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ToraMen_ToraMen1">
+    <End Role="ToraMen" Type="Self.ToraMen" Multiplicity="1" />
+    <End Role="ToraMen1" Type="Self.ToraMen" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="ToraMen">
+        <PropertyRef Name="Identity" />
+      </Principal>
+      <Dependent Role="ToraMen1">
+        <PropertyRef Name="Identity" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MilgaPluseDBModelStoreContainer">
+    <EntitySet Name="BankAccounts" EntityType="Self.BankAccounts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Children" EntityType="Self.Children" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Loans" EntityType="Self.Loans" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Scholarships" EntityType="Self.Scholarships" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ToraMen" EntityType="Self.ToraMen" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Children_ToraMen" Association="Self.FK_Children_ToraMen">
+      <End Role="ToraMen" EntitySet="ToraMen" />
+      <End Role="Children" EntitySet="Children" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Scholarships_ToraMen" Association="Self.FK_Scholarships_ToraMen">
+      <End Role="ToraMen" EntitySet="ToraMen" />
+      <End Role="Scholarships" EntitySet="Scholarships" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ToraMen_City" Association="Self.FK_ToraMen_City">
+      <End Role="City" EntitySet="City" />
+      <End Role="ToraMen" EntitySet="ToraMen" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ToraMen_ToraMen" Association="Self.FK_ToraMen_ToraMen">
+      <End Role="ToraMen" EntitySet="ToraMen" />
+      <End Role="ToraMen1" EntitySet="ToraMen" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ToraMen_ToraMen1" Association="Self.FK_ToraMen_ToraMen1">
+      <End Role="ToraMen" EntitySet="ToraMen" />
+      <End Role="ToraMen1" EntitySet="ToraMen" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
