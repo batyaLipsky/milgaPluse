@@ -1,0 +1,29 @@
+<!-- <div><a type="button" mdbBtn color="success" outline="true" class="waves-effect" mdbWavesEffect
+    (click)="chooseWayToOPen(5)">תמיד
+    פתח כאברך</a>
+</div> -->
+<div class="modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h5 class="heading lead">דרך פתיחה</h5>
+      </div>
+      <div class="modal-body">
+        <button type="button" class="btn btn-primary currentOpen" color="success" (click)="chooseWayToOPen(1)" outline="true">פתח
+          כמנהל
+        </button>
+        <button type="button" class="btn btn-primary currentOpen" color="success" (click)="chooseWayToOPen(2)">פתח
+          כאברך
+        </button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary currentOpen" color="success" outline="true" (click)="chooseWayToOPen(3)">תמיד
+          פתח כמנהל</button>
+        <!-- <button type="button" class="btn btn-primary currentOpen" color="success" outline="true" (click)="chooseWayToOPen(4)">שאל
+          תמיד</button> -->
+        <button type="button" class="btn btn-primary currentOpen" color="success" outline="true" (click)="chooseWayToOPen(5)">תמיד
+          פתח כאברך</button>
+      </div>
+    </div>
+  </div>
+</div>

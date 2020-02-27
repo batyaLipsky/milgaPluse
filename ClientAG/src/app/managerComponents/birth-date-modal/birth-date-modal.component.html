@@ -1,0 +1,11 @@
+<div id="dilog">
+  <h1 mat-dialog-title>תאריך הלידה העברי</h1>
+  <div mat-dialog-content>
+    <button class="dateButton" mat-stroked-button color="accent" [mat-dialog-close]="realHebrewBirthDate"
+      (click)="onClick(0)">{{data[0]}}</button>
+    <button class="dateButton" mat-stroked-button color="accent" [mat-dialog-close]="realHebrewBirthDate"
+      (click)="onClick(1)">{{data[1]}}</button>
+  </div>
+  <div mat-dialog-actions>
+  </div>
+</div>

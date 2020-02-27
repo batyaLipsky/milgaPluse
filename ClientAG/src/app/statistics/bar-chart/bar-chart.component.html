@@ -1,0 +1,32 @@
+<div>
+
+  <form id="params">
+    <div class="col inputItems">
+      <mat-form-field>
+        <input matInput type="text" class="form-control" id="numOfMonths" name="numOfMonths" #numOfMonths="ngModel"
+          [(ngModel)]="numMonths" placeholder="הקש מספר חודשים"
+          (change)="routerParam_numberChartToLoad==0?getDataAboutScholarship():routerParam_numberChartToLoad==1?getDataAboutLoans():getDataAboutMarks()"
+          min="1" max="12" appOnlyNumberInput OnlyNumber="true" required>
+        <mat-error *ngIf="!numOfMonths.valid">
+          שדה <strong>חובה</strong> עם מספרים בין 1-12
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="col inputItems" *ngIf="routerParam_numberChartToLoad==0||routerParam_numberChartToLoad==2">
+      <mat-form-field>
+        <input matInput type="text" class="form-control" id="userIdentity" name="userIdentity" #userIdentity="ngModel"
+          [(ngModel)]="identity" placeholder="הקש מספר זהות של אברך"
+          (change)="!userIdentity.valid?showChart=false:routerParam_numberChartToLoad==0?getDataAboutScholarship():getDataAboutMarks()"
+          minlength="9" maxlength="9" appOnlyNumberInput OnlyNumber="true" required>
+        <mat-error *ngIf="!userIdentity.valid">
+          שדה <strong>חובה</strong> עם 9 מספרים
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </form>
+  <div style="display: block" *ngIf="showChart">
+    <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+      [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType" [colors]="chartColors">
+    </canvas>
+  </div>
+</div>

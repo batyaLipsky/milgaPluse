@@ -1,0 +1,30 @@
+<h4 dir="rtl">העלאת קבצים</h4>
+
+<hr>
+<div class="files">
+
+
+    <div class="openFiles">
+        <button mat-raised-button color="info" block="true" class="mat-raised-button mat-primary ng-star-inserted"
+            id="buttonForInput" (click)="openFileInput();removeButton=true;">בחר
+            קובץ</button>
+        <input id="selectFiles" multiple type="file" [fileUploadInputFor]="fileUploadQueue" />
+    </div>
+    <br>
+
+    <mat-file-upload-queue (click)="clickit($event)" #fileUploadQueue [fileAlias]="'file'"
+        [httpUrl]="'http://localhost:63187/api/Files/SaveFiles'">
+
+        <mat-file-upload [file]="file" [id]="i" *ngFor="let file of fileUploadQueue.files; let i = index">
+        </mat-file-upload>
+
+    </mat-file-upload-queue>
+    <div *ngIf="showuploadAndRemoveButtons&&removeButton">
+        <button mat-raised-button color="info" block="true" class="mat-raised-button mat-primary ng-star-inserted"
+            id="buttonForInput" (click)="uploadAll()">
+            העלה הכל</button>
+        <button mat-raised-button color="info" block="true" class="mat-raised-button mat-primary ng-star-inserted"
+            id="buttonForInput" (click)="removeAll();removeButton=false">
+            הסר הכל</button>
+    </div>
+</div>

@@ -1,0 +1,37 @@
+.modal {
+   // margin-top: 10% !important;
+    display:contents!important;
+    font-family: inherit !important;
+  }
+  .modal-content {
+    text-align: center !important;
+  }
+  .btn-primary {
+    color: #213464 !important;
+    background-color: #FFEB3B !important;
+    border-color: #FFEB3B !important;
+  }
+  .currentOpen{
+    margin: 0 5px;
+  }
+  .modal-footer {
+     justify-content: center !important;
+  }
+//   @media (min-width: 576px)
+//  { .modal-dialog[_ngcontent-oxn-c5] {
+//       margin-top: auto;
+//       top: 15vh;
+//   }
+div.modal-dialog{
+  top: 15vh !important;
+}
+  @media (min-width: 576px)
+{
+  .modal-dialog {
+   margin-top: auto;
+}
+// .modal-dialog[_ngcontent-oxn-c5] {
+//   margin-top: auto;
+//   top: 15vh !important;
+// }
+}

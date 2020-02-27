@@ -1,0 +1,38 @@
+form {
+  font-family: inherit !important;
+}
+h4 {
+  text-align: center;
+  color: #213464;
+}
+#currentDataBtn {
+  margin: 1%;
+  border-right: 1px solid #ffd740;
+}
+.mat-stroked-button.mat-warn {
+  font-family: inherit !important;
+  color: #213464 !important;
+  margin: 1% !important;
+}
+.mat-stroked-button:not([class*="mat-elevation-z"]) {
+  box-shadow: 0 0 0 0 rgba(33, 52, 100, 0.17), 0 0 0 0 rgba(33, 52, 100, 0.18), 0 0 0 0 rgba(33, 52, 100, 0.21) !important;
+}
+.mat-stroked-button:not([disabled]) {
+  border-color: rgba(33, 52, 100, 0.21) !important;
+}
+.divWithBtn .mat-stroked-button:hover{
+  background-color: #21346426 !important;
+}
+mat-icon{
+  color: #ffd740;
+  float: right;
+  margin: 1%;
+  
+}
+mat-icon.inPhone{
+  float: left;
+  transform: rotate(90deg);
+}
+.oldVerisonData{
+  float: right;
+}

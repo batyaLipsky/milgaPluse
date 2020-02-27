@@ -1,0 +1,275 @@
+<!-- Form -->
+<h4 dir="rtl">נתוני בסיס לחישוב המלגות</h4>
+<hr>
+<form class="example-form text-center p-5" style="color:#213464;" (ngSubmit)="saveChanges(Form)" #Form="ngForm">
+  <!-- <table   cellspacing="0"> -->
+  <!--basic-->
+  <!-- <tr> -->
+  <!-- <td>
+      <mat-form-field  >
+        <input matInput placeholder="מילגת בסיס" appOnlyNumberInput OnlyNumber="true" name="basicHalfDay" type="text"
+          id="basic" #basic="ngModel" [(ngModel)]="basicMilgaHalfDay" min="0" />
+      </mat-form-field>
+    </td> -->
+  <!-- <td> -->
+
+  <div class="form-row">
+    <div class="col">
+
+      <mat-form-field>
+        <input matInput placeholder="מילגת בסיס" appOnlyNumberInput OnlyNumber="true" name="basicFullDay" type="text"
+          id="basic" #basic="ngModel" [(ngModel)]="form.basicFullDay" min="0" required />
+        <mat-error *ngIf="!basic.valid ">
+          שדה <strong>חובה</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <!-- <td>
+      <button mat-stroked-button color="accent" (click)="saveChanges()">שמור</button>
+    </td> -->
+    <!-- </tr> -->
+    <!--musar-->
+    <!-- <tr> -->
+    <!-- <td> -->
+    <div class="col">
+      <mat-form-field>
+        <input matInput placeholder="מילגת סדר מוסר" appOnlyNumberInput OnlyNumber="true" name="musar" type="text"
+          id="musar" #musar="ngModel" [(ngModel)]="form.musar" min="0" required />
+        <mat-error *ngIf="!musar.valid ">
+          שדה <strong>חובה</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <!-- <td>
+      <button mat-stroked-button color="accent" (click)="saveChanges()">שמור</button>
+    </td> -->
+    <!-- </tr> -->
+    <!--shmirat sdarim-->
+    <!-- <tr> -->
+    <!-- <td> -->
+    <div class="col">
+
+      <mat-form-field>
+        <input matInput placeholder="מילגת שמירת סדרים" appOnlyNumberInput OnlyNumber="true" name="shmiratSdarim"
+          type="text" id="shmiratSdarim" #shmiratSdarim="ngModel" [(ngModel)]="form.shmiratSdarim" min="0" required />
+        <mat-error *ngIf="!shmiratSdarim.valid ">
+          שדה <strong>חובה</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="col">
+
+      <mat-form-field>
+        <input matInput placeholder="מקסימום חיסורים בהם ניתן לקבל מלגה" appOnlyNumberInput OnlyNumber="true"
+          name="maxAbsence" type="text" id="maxAbsence" #maxAbsence="ngModel"
+          [(ngModel)]="form.maxAbsenceForShmiratSdarim" min="0" required />
+        <mat-error *ngIf="!maxAbsence.valid ">
+          שדה <strong>חובה</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="col">
+
+      <mat-form-field>
+        <input matInput placeholder="הפחתה לכל חיסור" appOnlyNumberInput OnlyNumber="true" name="discountPerAbsence"
+          type="text" id="discountPerAbsence" #discountPerAbsence="ngModel" [(ngModel)]="form.discountPerAbsenceInMilga"
+          min="0" required />
+        <mat-error *ngIf="!discountPerAbsence.valid ">
+          שדה <strong>חובה</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <!-- <td>
+      <button mat-stroked-button color="accent" (click)="saveChanges()">שמור</button>
+    </td> -->
+    <!-- </tr> -->
+    <!--atmada for full day-->
+    <!-- <tr> -->
+    <!-- <td> -->
+    <div class="col">
+
+      <mat-form-field>
+        <input matInput placeholder="מילגת התמדה יום שלם" appOnlyNumberInput OnlyNumber="true" name="atmadaFullDay"
+          type="text" id="atmadaFullDay" #atmadaFullDay="ngModel" [(ngModel)]="form.atmadaFullDay" min="0" required />
+        <mat-error *ngIf="!atmadaFullDay.valid ">
+          שדה <strong>חובה</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="col">
+
+      <mat-form-field>
+        <input matInput placeholder="מספר מלא של התמדה" appOnlyNumberInput OnlyNumber="true" name="fullAtmada"
+          type="text" id="fullAtmada" #fullAtmada="ngModel" [(ngModel)]="form.fullNumberAtmada" min="0" required />
+        <mat-error *ngIf="!fullAtmada.valid ">
+          שדה <strong>חובה</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="col">
+
+      <mat-form-field>
+        <input matInput placeholder="הפחתה עבור התמדה" appOnlyNumberInput OnlyNumber="true" name="discountPerAtmada"
+          type="text" id="discountPerAtmada" #discountPerAtmada="ngModel" [(ngModel)]="form.discountPerAtmada" min="0"
+          required />
+        <mat-error *ngIf="!discountPerAtmada.valid ">
+          שדה <strong>חובה</strong>
+        </mat-error>
+      </mat-form-field>
+    </div> <!-- </td> -->
+
+    <!-- </tr>
+
+    <tr>
+      <td> -->
+    <div class="col">
+
+      <mat-form-field>
+        <input matInput placeholder="סכום מלגה סטטית" appOnlyNumberInput OnlyNumber="true" name="staticScholarship"
+          type="text" id="staticScholarship" #staticScholarship="ngModel" [(ngModel)]="form.staticScholarship" min="0"
+          required />
+        <mat-error *ngIf="!staticScholarship.valid ">
+          שדה <strong>חובה</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="col">
+
+      <mat-form-field>
+        <input matInput placeholder="מילגת מבחן" appOnlyNumberInput OnlyNumber="true" name="test" type="text" id="test"
+          #test="ngModel" [(ngModel)]="form.test" maxlength="5" required />
+        <mat-error *ngIf="!test.valid ">
+          שדה <strong>חובה</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="col">
+
+      <mat-form-field>
+        <input matInput placeholder="ציון מינימלי" appOnlyNumberInput OnlyNumber="true" name="minMark" type="text"
+          id="minMark" #minMark="ngModel" [(ngModel)]="form.minMarkForTestMilga" maxlength="5" required />
+        <mat-error *ngIf="!minMark.valid ">
+          שדה <strong>חובה</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="col">
+
+
+      <!--add milga to atmada because test-->
+      <!-- <tr>
+        <td> -->
+      <mat-form-field>
+        <input matInput placeholder="תוספת מבחן לכל סדר" appOnlyNumberInput OnlyNumber="true" name="addTestMilga"
+          type="text" id="addTestMilga" #addTestMilga="ngModel" [(ngModel)]="form.addMilgaTestToAtmda" maxlength="5"
+          required />
+        <mat-error *ngIf="!addTestMilga.valid ">
+          שדה <strong>חובה</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="col">
+
+      <mat-form-field>
+        <input matInput placeholder="מלגת הצטיינות" appOnlyNumberInput OnlyNumber="true" name="excelence" type="text"
+          id="excelence" #excelence="ngModel" [(ngModel)]="form.excellenceScholarship" min="0" required />
+        <mat-error *ngIf="!addTestMilga.valid ">
+          שדה <strong>חובה</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="col">
+
+      <mat-form-field>
+        <input matInput placeholder="ציון הצטיינות מינימלי" appOnlyNumberInput OnlyNumber="true" name="minExcellentMark"
+          type="text" id="minExcellentMark" #minExcellentMark="ngModel" [(ngModel)]="form.minExcellentMarkForMilga"
+          min="0" required />
+        <mat-error *ngIf="!addTestMilga.valid ">
+          שדה <strong>חובה</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="col">
+
+      <mat-form-field>
+        <input matInput placeholder="משרד הדתות יום שלם" appOnlyNumberInput OnlyNumber="true" name="ReligiousMinistry"
+          type="text" id="ReligiousMinistry" #ReligiousMinistry="ngModel" [(ngModel)]="form.religiousMinistryForFullDay"
+          maxlength="5" required />
+        <mat-error *ngIf="!addTestMilga.valid ">
+          שדה <strong>חובה</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="col">
+
+      <mat-form-field>
+        <input matInput placeholder="שעת תחילת סדר א'" appOnlyNumberInput OnlyNumber="true"
+          name="timeOfBeginMorningSeder" type="text" id="timeOfBeginMorningSeder" #timeOfBeginMorningSeder="ngModel"
+          [(ngModel)]="form.timeOfBeginMorningSeder" min="0" required />
+        <mat-error *ngIf="!timeOfBeginMorningSeder.valid ">
+          שדה <strong>חובה</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="col">
+      <mat-form-field>
+        <input matInput placeholder="שעת תחילת סדר ב'" appOnlyNumberInput OnlyNumber="true"
+          name="timeOfBeginAfternoonSeder" type="text" id="timeOfBeginAfternoonSeder"
+          #timeOfBeginAfternoonSeder="ngModel" [(ngModel)]="form.timeOfBeginAfternoonSeder" required />
+        <mat-error *ngIf="!timeOfBeginAfternoonSeder.valid ">
+          שדה <strong>חובה</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="col">
+      <mat-form-field>
+        <input matInput placeholder="תוספת חגים" appOnlyNumberInput OnlyNumber="true" name="holidayScholarship"
+          type="text" id="holidayScholarship" #holidayScholarship="ngModel" [(ngModel)]="form.holidayScholarship" />
+      </mat-form-field>
+    </div>
+    <div class="col">
+      <mat-form-field>
+        <input matInput placeholder="תוספת חגים - הערות" name="noteHolidayScholarship" type="text"
+          id="noteHolidayScholarship" #noteHolidayScholarship="ngModel" [(ngModel)]="form.noteHolidayScholarship" />
+      </mat-form-field>
+    </div>
+    <div class="col">
+      <mat-form-field>
+        <input matInput placeholder="כללי - הערות" name="noteGeneral" type="text" id="noteGeneral"
+          #noteGeneral="ngModel" [(ngModel)]="form.noteGeneral" />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="form-row divWithBtn">
+    <div class="col">
+      <button type="submit" mat-stroked-button color="warn" id="submit" block="true"
+        (click)="saveChanges()">שמור</button>
+    </div>
+  </div>
+</form>
+
+
+
+<div *ngIf="!openOldData&&oldForm.length>0" class="inPhone col-push-sm-1 col-sm-2 divWithBtn d-block d-sm-none d-none d-sm-block d-md-none">
+    <mat-icon>double_arrow</mat-icon>
+    <p>גרסאות קודמות
+    </p>
+  </div>
+
+<div class="form-row divWithBtn">
+  <div class="col-sm-9">
+    <button class="oldVerisonData" type="button" *ngFor="let dataBtn of oldForm" mat-stroked-button color="warn" block="true"
+      (click)="openSpesificOldData(dataBtn)">{{dataBtn["Key"]}}</button>
+  </div>
+
+  <div *ngIf="openOldData" id="currentDataBtn" class="col-push-sm-1 col-sm-2 divWithBtn">
+    <button type="button" mat-stroked-button color="warn" block="true" (click)="refreshData()">גרסת נתונים
+      נוכחית</button>
+  </div>
+  <div *ngIf="!openOldData&&oldForm.length>0" class="col-push-sm-1 col-sm-2 divWithBtn d-none d-xl-block d-lg-block d-md-block">
+    <mat-icon>double_arrow</mat-icon>
+    <p>גרסאות קודמות
+    </p>
+  </div>
+</div>

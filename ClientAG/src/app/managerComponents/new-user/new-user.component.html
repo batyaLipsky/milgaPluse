@@ -1,0 +1,246 @@
+<!-- Form -->
+<form class="example-form text-center p-5 example-full-width" style="color:#213464;padding-top: 0.1rem!important;"
+  (ngSubmit)="saveUserDetailes()" #newForm="ngForm">
+
+  <h4 dir="rtl">פרטים אישיים</h4>
+  <hr>
+
+  <div class="form-row">
+
+    <div class="col">
+      <mat-form-field>
+        <input matInput placeholder="שם פרטי" appOnlyHebrewLettersInput OnlyHebrewLetters="true" name="firstName"
+          type="text" id="firstName" #firstName="ngModel" [(ngModel)]="editUser.FirstName" class="form-control"
+          minlength="2" required="true" />
+        <mat-error *ngIf="firstName.untouched ||!firstName.valid ">
+          <strong>חובה</strong> שדה
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <!-- class="example-full-width" -->
+    <div class="col">
+      <mat-form-field>
+        <input matInput placeholder="שם משפחה" appOnlyHebrewLettersInput OnlyHebrewLetters="true" name="lastName"
+          type="text" id="lastName" #lastName="ngModel" [(ngModel)]="editUser.LastName" class="form-control"
+          minlength="2" required="true" />
+        <mat-error *ngIf="lastName.untouched ||!lastName.valid ">
+          <strong>חובה</strong> שדה
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <!-- class="example-full-width" -->
+    <div class="col">
+      <mat-form-field>
+        <input matInput placeholder="מספר תעודת זהות" appOnlyNumberInput OnlyNumber="true" name="identity" type="text"
+          id="identity" #identity="ngModel" [(ngModel)]="editUser.Identity" class="form-control" minlength="9"
+          maxlength="9" required="true" />
+        <mat-error *ngIf="identity.untouched ||!identity.valid ">
+          <strong>חובה</strong> שדה
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="col">
+      <!-- class="example-full-width" -->
+      <mat-form-field>
+        <input matInput placeholder="שם משתמש" appOnlyNumberInput OnlyNumber="true"
+          name="identity" type="text" id="UserName" #UserName="ngModel" [(ngModel)]="editUser.UserName"
+          class="form-control" />
+        <mat-error *ngIf="UserName.untouched ||!UserName.valid ">
+          <strong>חובה</strong> שדה
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <hr>
+    <div class="col">
+      <mat-form-field>
+        <input matInput placeholder="רחוב" appOnlyHebrewLettersInput OnlyHebrewLetters="true" name="street" type="text"
+          id="street" #street="ngModel" [(ngModel)]="editUser.Street" class="form-control" minlength="2"
+          required="true" />
+        <mat-error *ngIf="street.untouched ||!street.valid ">
+          <strong>חובה</strong> שדה
+        </mat-error>
+        <!-- <mat-error *ngIf="">
+          
+        </mat-error> -->
+        <!-- <mat-error *ngIf="flagIsValidStreet">
+            ריוב לא חוקי (אולי מכיל מספרים?)
+        </mat-error> -->
+      </mat-form-field>
+    </div>
+
+
+    <div class="col">
+      <mat-form-field>
+        <input matInput placeholder="מספר בנין" appOnlyNumberInput OnlyNumber="true" name="buildingNumber" type="text"
+          id="buildingNumber" #buildingNumber="ngModel" [(ngModel)]="editUser.BuildingNumber" class="form-control"
+          minlength="1" min="1" required="true" />
+        <mat-error *ngIf="buildingNumber.untouched ||!buildingNumber.valid ">
+          <strong>חובה</strong> שדה
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="col">
+      <mat-form-field>
+        <input matInput placeholder="מספר דירה" appOnlyNumberInput OnlyNumber="true" name="homeNumber" type="text"
+          id="homeNumber" #homeNumber="ngModel" [(ngModel)]="editUser.HomeNumber" class="form-control" minlength="1"
+          min="1" />
+
+      </mat-form-field>
+    </div>
+
+    <div class="col">
+      <mat-form-field>
+        <!--minlength?-->
+        <input matInput placeholder="מיקוד" appOnlyNumberInput OnlyNumber="true" name="zipCode" type="text" id="zipCode"
+          #zipCode="ngModel" [(ngModel)]="editUser.ZipCode" class="form-control" />
+        <mat-error *ngIf="zipCode.untouched ||!zipCode.valid ">
+          <strong>חובה</strong> שדה
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <!-- <div class="md-form"> -->
+    <div class="input-group mb-3">
+      <div class="input-group-prepend ">
+        <label class="input-group-text" for="city">עיר</label>
+      </div>
+      <select name="city" #city="ngModel" [(ngModel)]="editUser.City" class="custom-select" required="true" id="city"
+        aria-placeholder="בחר עיר">
+        <option *ngFor="let city of cities" [selected]="city.Id == editUser.City">{{city.CityName}}</option>
+      </select>
+      <div id="labelNewCity" class="input-group-prepend " (click)="showNewCityInput=!showNewCityInput;">
+        <label class="input-group-text" for="city">עיר אחרת</label>
+      </div>
+    </div>
+    <!-- <div class="input-group mb-3"> -->
+
+    <!-- <select name="newCity" #city="ngModel" [(ngModel)]="editUser.City" class="custom-select"  id="newCity"
+          aria-placeholder="בחר עיר">
+          <option *ngFor="let city of cities" [selected]="city.Id == editUser.City">{{city.CityName}}</option>
+        </select> -->
+  </div>
+  <!-- <input type="text" *ngIf="showNewCityInput" appOnlyHebrewLettersInput OnlyHebrewLetters="true" name="newCity" #city="ngModel" [(ngModel)]="editUser.City"id="newCity" /> -->
+  <div class="col" *ngIf="showNewCityInput">
+    <mat-form-field>
+      <input matInput placeholder="עיר חדשה" appOnlyHebrewLettersInput OnlyHebrewLetters="true" name="newCity"
+        type="text" id="newCity" #newCity="ngModel" [(ngModel)]="newCityName" class="form-control"(blur)="saveNewCity()" />
+      <mat-error *ngIf="newCity.untouched ||!newCity.valid||newCity.value=='' ">
+        <strong>חובה</strong> שדה
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <!-- </div> -->
+
+
+  <!-- <h5 dir="rtl">תקשורת</h5> -->
+  <hr>
+  <div class="form-row">
+
+    <div class="col">
+      <mat-form-field>
+        <input appOnlyNumberInput OnlyNumber="true" matInput name="telephon" placeholder="טלפון" type="text"
+          id="telephon" #telephon="ngModel" [(ngModel)]="editUser.Telephon" class="form-control" minlength="7"
+          manlength="10" />
+        <mat-error *ngIf="telephon.untouched ||!telephon.valid ">
+          <strong>חובה</strong> שדה
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="col">
+      <mat-form-field>
+        <input appOnlyNumberInput OnlyNumber="true" matInput placeholder="פלאפון (1)" name="cellularTelephone1"
+          type="text" id="cellularTelephone1" #cellularTelephone1="ngModel" [(ngModel)]="editUser.CellularTelephone1"
+          class="form-control" minlength="10" manlength="10" required="true" />
+        <mat-error *ngIf="cellularTelephone1.untouched ||!cellularTelephone1.valid ">
+          <strong>חובה</strong> שדה
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="col">
+      <mat-form-field>
+        <input appOnlyNumberInput OnlyNumber="true" matInput placeholder="פלאפון (2)" name="cellularTelephone2"
+          type="text" id="cellularTelephone2" #cellularTelephone2="ngModel" [(ngModel)]="editUser.CellularTelephone2"
+          class="form-control" minlength="10" manlength="10" />
+
+      </mat-form-field>
+    </div>
+
+    <div class="col">
+      <mat-form-field>
+        <input matInput placeholder="מייל" name="email" type="text" id="email" #email="ngModel"
+          [(ngModel)]="editUser.Email" class="form-control">
+        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+          Please enter a valid email address
+        </mat-error>
+        <mat-error *ngIf="emailFormControl.hasError('required')">
+          Email is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+  <!-- <div class="form-row"> -->
+  <div class="form-row">
+    <!-- </div> -->
+    <div class="col">
+      <mat-form-field>
+        <input matInput required [matDatepicker]="picker" placeholder="תאריך לידה לועזי" name="birthDate" id="birthDate"
+          #birthDate="ngModel" [(ngModel)]="editUser.BirthDate_gregorian" (dateChange)="findTheHebrewBirthdate()"
+          class="form-control">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker touchUi #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="col">
+      <!-- *ngIf="editUser.BirthDate_hebrew" -->
+      <mat-form-field>
+        <input matInput aria-selected="true"
+          [value]="editUser.BirthDate_hebrew==undefined?'לא הוקש תאריך לועזי':editUser.BirthDate_hebrew" disabled
+          placeholder="תאריך לידה עברי" class="form-control">
+
+      </mat-form-field>
+    </div>
+
+    <div class="col">
+      <mat-form-field>
+        <input matInput placeholder="מספר ילדים" appOnlyNumberInput OnlyNumber="true" name="children" type="text"
+          id="children" #children="ngModel" [(ngModel)]="editUser.Children" class="form-control" required="true" />
+        <mat-error *ngIf="children.untouched ||!children.valid ">
+          <strong>חובה</strong> שדה
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+  <hr>
+  <!--Children-->
+
+  <!-- <hr> -->
+  <div id="selection" class="form-row">
+
+    <div class="col">
+      <section>
+        <!-- <mat-checkbox class="col-md-3 example-margin" name="musar" #musar="ngModel" [(ngModel)]="editUser.LearnMusar"
+          id="musar">סדר
+          מוסר</mat-checkbox> -->
+        <mat-checkbox class="col-md-3 example-margin" name="fullDay" #fullDay="ngModel" [(ngModel)]="editUser.FullDay"
+          id="fullDay">
+          לומד יום מלא</mat-checkbox>
+        <!-- <mat-checkbox class="col-md-3 example-margin" name="doingTest" #doingTest="ngModel"
+          [(ngModel)]="editUser.DoingTest" id="doingTest">נבחן</mat-checkbox> -->
+        <mat-checkbox *ngIf="currentUser&&currentUser.IsManager==true" class="col-md-3 example-margin" name="isManager"
+          #isManager="ngModel" [(ngModel)]="editUser.IsManager" id="isManager">ראש כולל
+        </mat-checkbox>
+      </section>
+    </div>
+  </div>
+  <button type="submit" mat-raised-button [disabled]="!newForm.form.valid" id="submit" color="info" block="true"
+    class="my-4">שמור
+    פרטים</button>
+
+  <!-- <button>שמור כקובץ</button> -->
+</form>

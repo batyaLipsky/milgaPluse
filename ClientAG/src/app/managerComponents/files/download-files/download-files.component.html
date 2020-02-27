@@ -1,0 +1,36 @@
+<!-- <button (click)="downlaod()"></button> -->
+<!-- <button (click)="getAllFilesNames()">jjjjjjjj</button> -->
+<h4 dir="rtl">הורדת קבצים</h4>
+<hr>
+
+<!-- <div class="row example-button-row" >
+  <button *ngFor="let fileName of filesNames" mat-button color="accent" class="fileName  ">
+    <mat-icon id="downloadIcon" (click)="downlaod(fileName)">get_app</mat-icon>
+    <mat-icon id="clearIcon" (click)="deletFile(fileName)">clear</mat-icon>
+    <p>{{fileName}}</p>
+  </button>
+</div> -->
+<div class="container" *ngFor="let fileName of filesNames;index as i">
+  <div *ngIf="i%3==0" class="row example-button-row">
+    <button *ngIf="i+0<filesNames.length" mat-button color="accent" class="fileName col ">
+      <div>
+        <mat-icon class="downloadIcon" (click)="downlaod(fileName)">get_app</mat-icon>
+        <mat-icon class="clearIcon" (click)="deletFile(fileName)">clear</mat-icon>
+      </div>
+      <p>{{filesNames[i+0]}}</p>
+    </button>
+    <button *ngIf="i+1<filesNames.length" mat-button color="accent" class="fileName col">
+      <div>
+        <mat-icon class="downloadIcon" (click)="downlaod(fileName)">get_app</mat-icon>
+        <mat-icon class="clearIcon" (click)="deletFile(fileName)">clear</mat-icon>
+      </div>
+      <p>{{filesNames[i+1]}}</p>
+    </button>
+    <button *ngIf="i+2<filesNames.length" mat-button color="accent" class="fileName col ">
+      <div>
+        <mat-icon class="downloadIcon" (click)="downlaod(fileName)">get_app</mat-icon>
+        <mat-icon class="clearIcon" (click)="deletFile(fileName)">clear</mat-icon>
+      </div>
+      <p>{{filesNames[i+2]}}</p>
+    </button> </div>
+</div>

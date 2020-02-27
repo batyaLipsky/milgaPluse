@@ -1,0 +1,53 @@
+h4 {
+  text-align: center;
+  color: #213464;
+}
+.example-button-row {
+  font-family: inherit !important;
+  flex-wrap: wrap;
+  width: inherit;
+}
+.mat-button.mat-accent,
+.mat-icon-button.mat-accent,
+.mat-stroked-button.mat-accent {
+  color: #213464 !important;
+  text-align: right !important;
+}
+.fileName {
+  display: flex;
+  flex-direction: column;
+  overflow-wrap: break-word;
+  white-space: normal;
+  border: 0.5px solid #213464;
+  margin: 0.5%;
+}
+.fileName:hover {
+  background-color: #2134642e;
+ }
+ .downloadIcon{
+  margin-top: 4%;
+ }
+.fileName .clearIcon:hover {
+  color: #f44336 !important;
+  background-color: inherit;
+}
+
+.fileName .downloadIcon:hover {
+  color: #ffeb3b !important;
+  background-color: inherit;
+}
+.example-button-row {
+  text-align: right;
+}
+.clearIcon {
+  float: left !important;
+  line-height: inherit;
+  position: absolute;
+  left: 5%;
+}
+
+@media (min-width: 576px) {
+  .col-sm-4 {
+    flex: 0 0 32.333333% !important;
+  }
+}

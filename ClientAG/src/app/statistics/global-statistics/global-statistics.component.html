@@ -1,0 +1,24 @@
+<h4 dir="rtl">פילוח נתונים</h4>
+<hr>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6"> <label>מספר ילדים ממוצע לאברך </label><label class="circle">{{avgChildren}}</label>
+            <!-- <br /> -->
+        </div>
+        <div class="col-sm-6">
+            <label>ממוצע גיל האברכים </label><label class="circle"> {{avgUsersAge|number : fractionSize}}</label>
+            <!-- <br /> -->
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+
+        <li class="col"><a mat-button class="statisticBtn"  routerLink="barChart/0">סכומי מלגה</a></li>
+        <li class="col"><a mat-button class="statisticBtn"  routerLink="barChart/1">סכומי הלוואות שהוחזרו</a></li>
+        <li class="col"><a mat-button class="statisticBtn"  routerLink="barChart/2">רמת ציונים</a></li>
+        <li class="col"><a mat-button class="statisticBtn"  routerLink="lineChart/3">רמת התמדה</a></li>
+        <li class="col"><a mat-button class="statisticBtn"  routerLink="lineChart/4">רמת שמירת סדרים</a></li>
+    </div>
+    <router-outlet></router-outlet>
+</div>
+

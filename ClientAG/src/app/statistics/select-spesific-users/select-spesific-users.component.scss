@@ -1,0 +1,135 @@
+* {
+  font-family: inherit;
+}
+h4 {
+  text-align: center;
+  color: #213464;
+}
+form {
+  padding: 0 !important;
+}
+.mat-form-field,
+.mat-checkbox {
+  font-family: inherit !important;
+}
+
+.mat-card-header {
+  display: inherit;
+  text-align: center;
+  height: 2% !important;
+}
+button:focus {
+  outline: none !important;
+}
+table {
+  width: 100%;
+  text-align: center;
+  display: inline-table !important;
+}
+section {
+  text-align: right;
+  direction: rtl !important;
+}
+.search {
+  font-family: inherit;
+  // width: 30%;
+}
+.mat-elevation-z8 {
+  box-shadow: 0 0px 0px 0px rgba(0, 0, 0, 0.2), 0 0px 0px 0px rgba(0, 0, 0, 0.14), 0 0px 0px 0px rgba(0, 0, 0, 0.12) !important;
+  font-family: inherit;
+}
+.mat-form-field-infix {
+  width: max-content !important;
+}
+.mat-card {
+  margin: 0.5% !important;
+  color: rgb(33, 52, 100);
+}
+.mat-card-actions .mat-button:first-child {
+  width: 100%;
+}
+.searchButton {
+  border: 1px solid #ffeb3b !important;
+}
+.mat-button.mat-accent,
+.mat-icon-button.mat-accent,
+.mat-stroked-button.mat-accent {
+  color: #ffeb3b;
+  font-family: inherit;
+}
+// .mat-form-field-appearance-legacy .mat-form-field-wrapper {
+//   width: 80% !important;
+// }
+.mat-card-content {
+  height: 75%;
+}
+.btn:focus {
+  box-shadow: none;
+}
+.searchAll {
+  width: 100%;
+  background-color: #ffeb3b;
+  color: #213464 !important;
+  // border-color: #213464 !important;
+  margin-left: 3%;
+  margin-right: 1%;
+}
+/* Change label color on focused */
+.mat-form-field.mat-focused .mat-form-field-label {
+  color: #213464 !important;
+}
+th.mat-header-cell {
+  text-align: center !important;
+}
+/* underline border color on focused */
+.mat-focused .mat-form-field-underline .mat-form-field-ripple {
+  background-color: #ffeb3b !important;
+}
+th,
+td {
+  padding-left: 2.5%;
+  text-align: center;
+}
+.tdcontainTbl {
+  padding-left: 0;
+  padding-top: 0;
+}
+.p-5 {
+  padding-right: 0rem !important;
+  padding-left: 0rem !important;
+}
+th.mat-header-cell {
+  width: 10vw;
+}
+.mat-stroked-button.mat-accent{
+  text-align: center !important;
+}
+#firstIcon{
+  transform:rotate(180deg);
+
+}
+.thirdForm th{
+  padding-right: 0;
+  padding-left: 0;
+}
+.secondTbl tr td{
+  color:rgb(33, 52, 100)!important;
+  text-shadow: 0 0 8px #213464;
+}
+@media (min-width: 768px) {
+  .col-md-4 {
+    flex: 0 0 33.333333%;
+    max-width: 32.333333%;
+  }
+  p{
+    padding-left: 10%;
+  }
+  .inSmallScrean{
+    visibility: hidden;
+  }
+}
+@media(max-width:425px){
+  .inSmallScrean{
+    visibility: visible;
+  }
+}

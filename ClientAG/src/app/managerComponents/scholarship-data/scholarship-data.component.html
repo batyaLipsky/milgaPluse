@@ -1,0 +1,316 @@
+<h4 *ngIf="!routerParam_ifLoadToConfirm" dir="rtl">נתוני מילגות</h4>
+<h4 *ngIf="routerParam_ifLoadToConfirm" dir="rtl">אישור מילגות</h4>
+<hr>
+<!--button for fhoose way to fill milga-->
+<div class="example-button-row" id="oldOrNewScholarshipButton" *ngIf="!routerParam_ifLoadToConfirm">
+  <button mat-stroked-button class="scholarshipButton" color="accent" *ngIf="!alredyApply"
+    (click)="openMilgaAccordingParams('new');tableMonthAndYearOpen=false">מילגה
+    חדשה</button>
+  <button mat-stroked-button class="scholarshipButton" color="accent"
+    (click)="openMilgaAccordingParams('old');tableMonthAndYearOpen=true">נתוני
+    מילגות קודמות</button>
+</div>
+
+<!--data to serch-->
+<form class="example-form text-center p-5 example-full-width" id="form" style="color:#213464;"
+  (ngSubmit)="findOldMilga(newForm)" #searchForm="ngForm" *ngIf="tableMonthAndYearOpen">
+  <div class="form-row row" id="searchData">
+
+    <mat-form-field class="col" [class.col-sm-4]="!currentUserIsManager" [class.col-sm-3]="currentUserIsManager">
+      <input matInput placeholder="שנה" appOnlyHebrewLettersInput OnlyHebrewLetters="true" name="searchYear" type="text"
+        id="searchYear" #searchYear="ngModel" [(ngModel)]="oldMilgaYear" maxlength="5" />
+    </mat-form-field>
+
+    <mat-form-field class="col" [class.col-sm-4]="!currentUserIsManager" [class.col-sm-3]="currentUserIsManager">
+      <input matInput placeholder="חודש" appOnlyHebrewLettersInput OnlyHebrewLetters="true" name="searchMonth"
+        type="text" id="searchMonth" #searchMonth="ngModel" [(ngModel)]="oldMilgaMonth" maxlength="6" />
+    </mat-form-field>
+
+    <mat-form-field class="col col-sm-3" *ngIf="currentUserIsManager">
+      <input matInput placeholder="תעודת זהות" appOnlyNumberInput OnlyNumber="true" name="searchIdentity" type="text"
+        id="searchIdentity" #searchIdentity="ngModel" [(ngModel)]="searchOldMilgaByUserId" maxlength="9"
+        minlength="9" />
+    </mat-form-field>
+  </div>
+  <button type="submit" mat-stroked-button color="accent" class="scholarshipButton"
+    (click)="findOldMilga()">חיפוש</button>
+</form>
+<!-- <div *ngIf="filtersLoaded | async"> -->
+<div class="searchResult" *ngIf="previousMilga&&previousMilga.length!=0">
+  <mat-accordion class="example-headers-align">
+    
+    <mat-expansion-panel *ngFor="let milga of previousMilga;let i=index" [expanded]="step === i" (opened)="setStep(i)"
+      hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <h6 dir="rtl" *ngIf="milga">נתוני מלגה ר"ח {{milga.HebrewMonth}}, {{milga.HebrewYear}}&nbsp;
+            {{identitiasAndNames&&identitiasAndNames[""+milga.Identity+""]}}</h6>
+          <hr>
+          <div>
+            {{previousMilga}}{{i}}
+          </div>
+          <mat-icon *ngIf="lastScholarshipForAllUsers[milga.Identity].Date==milga.Date" class="attachMoneyIcon">
+            attach_money</mat-icon>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <form class="example-form text-center p-5" style="color:#213464;" (ngSubmit)="newMilgaDetailes(i)"
+        #newForm="ngForm">
+        <hr>
+        <div class="form-row">
+          <div class="col">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="חיסורים" appOnlyNumberInput OnlyNumber="true" name="absence" type="text"
+                #absence="ngModel" [(ngModel)]="milga.Absence" class="form-control" maxlength="2" required="true"
+                [disabled]="!routerParam_ifLoadToConfirm&&!showAsNewMilga"
+                (change)="allowSaveonlyAfterCalculate=false" />
+              <mat-error *ngIf="absence.untouched ||!absence.valid ">
+                <strong>חובה</strong> שדה
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="התמדה" appOnlyNumberInput OnlyNumber="true" name="atmada" type="text"
+                #atmada="ngModel" [(ngModel)]="milga.Atmada" class="form-control" maxlength="2" required="true"
+                [disabled]="!routerParam_ifLoadToConfirm&&!showAsNewMilga"
+                (change)="allowSaveonlyAfterCalculate=false" />
+              <mat-error *ngIf="atmada.untouched ||!atmada.valid ">
+                <strong>חובה</strong> שדה
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+        </div>
+
+        <div class="form-row">
+          <!-- id="noteAbsence" -->
+          <div class="col">
+            <mat-form-field class="example-full-width">
+              <textarea matInput placeholder="חיסורים - הערות" name="noteAbsence" type="text" #noteAbsence="ngModel"
+                [(ngModel)]="milga.NoteAbsence" class="form-control" minlength="2"
+                [disabled]="!routerParam_ifLoadToConfirm&&!showAsNewMilga"></textarea>
+            </mat-form-field>
+          </div>
+
+          <div class="col">
+            <!-- id="noteAtmada" -->
+            <mat-form-field class="example-full-width">
+              <textarea matInput placeholder="התמדה - הערות" name="noteAtmada" type="text" #noteAtmada="ngModel"
+                [(ngModel)]="milga.NoteAtmada" class="form-control" minlength="2"
+                [disabled]="!routerParam_ifLoadToConfirm&&!showAsNewMilga"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <!--add this node to the modal-->
+          <div class="col">
+            <mat-form-field class="example-full-width">
+              <textarea matInput placeholder="הערות כלליות" name="noteAtmada" type="text" id="noteAtmada"
+                #noteAtmada="ngModel" [(ngModel)]="milga.NoteAtmada" class="form-control" minlength="2"
+                [disabled]="!routerParam_ifLoadToConfirm&&!showAsNewMilga"></textarea>
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <!-- id="donation"-->
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="תרומה" appOnlyNumberInput OnlyNumber="true" name="donation" type="text"
+                #donation="ngModel" [(ngModel)]="milga.Donation" class="form-control"
+                [disabled]="!routerParam_ifLoadToConfirm&&!showAsNewMilga"
+                (change)="allowSaveonlyAfterCalculate=false" />
+              <mat-error *ngIf="donation.untouched ||!donation.valid ">
+                <strong>חובה</strong> שדה
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="form-row">
+
+          <div class="col">
+            <!-- id="refundTransportation" -->
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="החזר נסיעות" appOnlyNumberInput OnlyNumber="true" name="refundTransportation"
+                type="text" #refundTransportation="ngModel" [(ngModel)]="milga.RefundTransportation"
+                class="form-control" [disabled]="!routerParam_ifLoadToConfirm&&!showAsNewMilga"
+                (change)="allowSaveonlyAfterCalculate=false" />
+              <mat-error *ngIf="refundTransportation.untouched ||!refundTransportation.valid ">
+                <strong>חובה</strong> שדה
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <!-- id="musar" -->
+            <section class="example-section">
+              <mat-checkbox class="col-md-3 example-margin" name="musar" #musar="ngModel" [(ngModel)]="milga.Musar"
+                [disabled]="!routerParam_ifLoadToConfirm&&!showAsNewMilga" (change)="allowSaveonlyAfterCalculate=false">
+                סדר
+                מוסר</mat-checkbox>
+            </section>
+          </div>
+        </div>
+        <button class="saveButton" mat-stroked-button color="accent" type="submit"
+          [hidden]="routerParam_ifLoadToConfirm||!showAsNewMilga" [disabled]="!newForm.form.valid" color="info"
+          block="true" class="my-4">שמור
+          פרטים</button>
+      </form>
+
+      <form class="example-form text-center p-5" style="color:#213464;"
+        *ngIf="routerParam_ifLoadToConfirm||!showAsNewMilga" (ngSubmit)="approveMilgaDetailes(i)" #fullForm="ngForm">
+
+        <div class="form-row">
+          <!-- בסיס -->
+          <div class="col">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="בסיס" appOnlyNumberInput OnlyNumber="true" name="basic" type="text"
+                #basic="ngModel" [disabled]="!routerParam_ifLoadToConfirm" [(ngModel)]="milga.Basic"
+                class="form-control" required="true" (change)="allowSaveonlyAfterCalculate=false" />
+              <mat-error *ngIf="basic.untouched ||!basic.valid ">
+                <strong>חובה</strong> שדה
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <!-- שמירת סדרים -->
+          <div class="col">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="שמירת סדרים" appOnlyNumberInput OnlyNumber="true" name="SumForShmiratSdarim"
+                type="text" #SumForShmiratSdarim="ngModel" [(ngModel)]="milga.SumForShmiratSdarim" class="form-control"
+                maxlength="2" required="true" [disabled]="!routerParam_ifLoadToConfirm"
+                (change)="allowSaveonlyAfterCalculate=false" />
+              <mat-error *ngIf="SumForShmiratSdarim.untouched ||!SumForShmiratSdarim.valid ">
+                <strong>חובה</strong> שדה
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <!-- סהכ עבור התמדה -->
+          <div class="col">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="סך הכל עבור התמדה" appOnlyNumberInput OnlyNumber="true" name="SumForAtmada"
+                type="text" #SumForAtmada="ngModel" [(ngModel)]="milga.SumForAtmada" class="form-control" maxlength="2"
+                required="true" [disabled]="!routerParam_ifLoadToConfirm"
+                (change)="allowSaveonlyAfterCalculate=false" />
+              <mat-error *ngIf="SumForAtmada.untouched ||!SumForAtmada.valid ">
+                <strong>חובה</strong> שדה
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <!-- ציון -->
+          <div class="col">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="ציון" appOnlyNumberInput OnlyNumber="true" name="mark" type="text"
+                #mark="ngModel" [(ngModel)]="milga.Mark" class="form-control" min="0" max="100" required
+                [disabled]="!routerParam_ifLoadToConfirm" (change)="allowSaveonlyAfterCalculate=false" />
+              <mat-error *ngIf="mark.untouched ||!mark.valid ">
+                <strong>חובה</strong> שדה
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="מילגת מבחן" appOnlyNumberInput OnlyNumber="true" name="sumForMark"
+                type="text" #sumForMark="ngModel" [(ngModel)]="milga.SumForMark" class="form-control" min="0" required
+                [disabled]="!routerParam_ifLoadToConfirm" (change)="allowSaveonlyAfterCalculate=false" />
+              <mat-error *ngIf="sumForMark.untouched ||!sumForMark.valid ">
+                <strong>חובה</strong> שדה
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <!-- מילגת הצטיינות -->
+          <div class="col">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="מילגת הצטיינות" appOnlyNumberInput OnlyNumber="true"
+                name="excellenceScholarship" type="text" #excellenceScholarship="ngModel"
+                [(ngModel)]="milga.ExcellenceScholarship" [disabled]="!routerParam_ifLoadToConfirm" class="form-control"
+                (change)="allowSaveonlyAfterCalculate=false" />
+              <mat-error *ngIf="excellenceScholarship.untouched ||!excellenceScholarship.valid ">
+                <strong>חובה</strong> שדה
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <!-- תוספת חגים -->
+          <div class="col" *ngIf="milga.NoteHolidayScholarship">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="תוספת חגים" appOnlyNumberInput OnlyNumber="true" name="holidayScholarship"
+                type="text" #holidayScholarship="ngModel" [(ngModel)]="milga.HolidayScholarship" class="form-control"
+                [disabled]="!routerParam_ifLoadToConfirm" (change)="allowSaveonlyAfterCalculate=false" />
+              <mat-error *ngIf="holidayScholarship.untouched ||!holidayScholarship.valid ">
+                <strong>חובה</strong> שדה
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <!-- תוספת חגים - הערות -->
+          <div class="col" *ngIf="milga.NoteHolidayScholarship">
+            <mat-form-field class="example-full-width">
+              <textarea matInput placeholder="תוספת חגים - הערות" name="noteHolidayScholarship" type="text"
+                #noteHolidayScholarship="ngModel" [(ngModel)]="milga.NoteHolidayScholarship" class="form-control"
+                [disabled]="!routerParam_ifLoadToConfirm"></textarea>
+            </mat-form-field>
+          </div>
+
+          <!-- משרד הדתות -->
+          <div class="col">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="משרד הדתות" appOnlyNumberInput OnlyNumber="true" name="religiousMinistry"
+                type="text" #religiousMinistry="ngModel" [(ngModel)]="milga.ReligiousMinistry"
+                [disabled]="!routerParam_ifLoadToConfirm" class="form-control" required="true"
+                (change)="allowSaveonlyAfterCalculate=false" />
+            </mat-form-field>
+          </div>
+
+          <!-- מילגה נטו -->
+          <div class="col">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="מילגה נטו" appOnlyNumberInput OnlyNumber="true" name="Scholarship1"
+                type="text" [disabled]="!routerParam_ifLoadToConfirm" #scholarships="ngModel"
+                [(ngModel)]="milga.Scholarship" class="form-control" (change)="allowSaveonlyAfterCalculate=false" />
+            </mat-form-field>
+          </div>
+
+          <!-- מילגה ברוטו -->
+          <div class="col">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="מילגה ברוטו" appOnlyNumberInput OnlyNumber="true" name="scholarshipsAndLoan"
+                type="text" #scholarshipsAndLoan="ngModel" [(ngModel)]="milga.ScholarshipsAndLoan"
+                [disabled]="!routerParam_ifLoadToConfirm" class="form-control"
+                (change)="allowSaveonlyAfterCalculate=false" />
+            </mat-form-field>
+          </div>
+
+          <!-- חוב -->
+          <div class="col">
+            <mat-form-field class="example-full-width">
+              <button mat-button color="warn" class="col calculateDebtBTN"
+                (click)="openAddSummaryLoanDialog(i);">סיכום</button>
+              <input matInput placeholder="חוב" appOnlyNumberInput OnlyNumber="true" name="remainderDebt" type="text"
+                [disabled]="!routerParam_ifLoadToConfirm" #remainderDebt="ngModel" [(ngModel)]="milga.RemainderDebt"
+                class="form-control col" (change)="allowSaveonlyAfterCalculate=false" />
+            </mat-form-field>
+          </div>
+
+        </div>
+        <button type="submit" mat-stroked-button [hidden]="!routerParam_ifLoadToConfirm"
+          [disabled]="!fullForm.form.valid" color="info" block="true" class="my-4"
+          (click)="allowSaveonlyAfterCalculate=true;">חישוב</button>
+        <button class="saveButton" mat-stroked-button type="submit" [hidden]="!routerParam_ifLoadToConfirm"
+          [disabled]="!fullForm.form.valid||!allowSaveonlyAfterCalculate" color="info" block="true"
+          (click)="saveConfirmMilga(i)">שמור
+          פרטים</button>
+      </form>
+
+      <mat-action-row>
+        <button *ngIf="i!=0" mat-button color="warn" (click)="prevStep()">הקודם</button>
+        <button *ngIf="i!=previousMilga.length-1" mat-button color="warn" (click)="nextStep()">הבא</button>
+      </mat-action-row>
+
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>
+<div class="searchResult" *ngIf="routerParam_ifLoadToConfirm&&previousMilga.length==0">
+  לא נמצאו מילגות
+</div>
+<!-- </div> -->

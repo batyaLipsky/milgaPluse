@@ -1,0 +1,37 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import 'bootstrap/dist/css/bootstrap.min.css';
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+body{
+color: #000;
+  
+background-color:var(--regular-color, palegoldenrod );
+}
+
+body.inLogin{ 
+    background-image:var(--no-image, url(./assets/logo/logo.png));
+    background-color:var(--regular-color, #203864 )!important;
+    background-position: center center;
+			background-repeat:  no-repeat;
+			background-attachment: fixed;
+			background-size:  contain;
+		}  
+	
+
+		body { 
+		  font-family:"Segoe UI",Arial, Helvetica, sans-serif;
+		  margin: 0;
+		}
+		
+		.basic-container {
+		  padding: 30px;
+		}
+		
+		.version-info {
+		  font-size: 8pt;
+		  float: right;
+		}
+		// .mat-button{
+		// 	font-family: inherit;
+		// }
+	

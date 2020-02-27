@@ -1,0 +1,45 @@
+<h1 mat-dialog-title>נתוני הלוואות</h1>
+<mat-dialog-content>
+  <div *ngIf="isOpenDialog">
+    <div>
+      <div class=" example-full-width">
+        <p class="txt" id="txt1">חוב מחודשים קודמים: {{sumOfRemainderDebt}}</p>
+      </div>
+      <div class=" example-full-width">
+        <p class="txt" id="txt2">חוב מחודש זה: {{scholarship.RemainderDebt}}</p>
+      </div>
+      <div class=" example-full-width">
+        <p class="txt border" id="txt3">סך הכל: {{scholarship.RemainderDebt+sumOfRemainderDebt}}</p>
+      </div>
+    </div>
+    <div>
+      <div class=" example-full-width">
+        <h6 class="txt" id="txt4">פירוט תשלומים שניתנו לאחר קבלת המלגה</h6>
+      </div>
+      <div *ngIf="loans">
+        <div *ngFor="let loan of loans">
+          <div class="row example-full-width">
+            <p class="col txt">תאריך פרעון: {{loan.ReturnLoanHebrewDate}}</p>
+            <p class="col txt">סכום: {{loan.LoanSum}}</p>
+          </div>
+
+        </div>
+
+        <div class=" example-full-width">
+          <p class="txt">סך הכל נפרע: {{sum}}</p>
+        </div>
+      </div>
+      <div *ngIf="!loans" style="text-align: center">
+        <p>אין</p>
+      </div>
+      <div class=" example-full-width">
+        <p class="txt border">חוב שנותר: {{scholarship.RemainderDebt+sumOfRemainderDebt-sum}}</p>
+      </div>
+    <button *ngIf="openReturnLoan" mat-button color="warn" (click)="newReturnLoad()">החזרת הלוואה</button>
+    </div>
+  </div>
+  <div *ngIf="!isOpenDialog">
+    <p style="text-align: center;">{{errMessage}}</p>
+  </div>
+
+</mat-dialog-content>

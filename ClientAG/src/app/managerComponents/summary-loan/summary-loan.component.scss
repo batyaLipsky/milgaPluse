@@ -1,0 +1,32 @@
+h1 {
+  text-align: center;
+}
+h1,
+mat-dialog-content {
+  font-family: inherit !important;
+}
+.mat-dialog-container {
+  width: 100%;
+  height: fit-content;
+}
+.mat-dialog-content {
+  height: 100% !important;
+  box-shadow: inset 0 0px 4px 0px rgba(0, 0, 0, 0.12);
+}
+
+.txt {
+  text-align: center;
+  font-size: inherit;
+}
+.border {
+  border-style: solid;
+  border-color: #ffd740 !important;
+  border-width: 1px;
+}
+div#cdk-overlay-0.cdk-overlay-pane {
+  height: fit-content !important;
+}
+
+div#cdk-overlay-0.cdk-overlay-pane {
+  height: fit-content !important;
+}

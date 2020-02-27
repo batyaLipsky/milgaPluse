@@ -1,0 +1,66 @@
+.example-form {
+  font-family: inherit !important;
+  min-width: 150px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+.form-control:focus {
+  border-color: inherit !important;
+}
+.example-h2 {
+  margin: 10px;
+}
+.mat-form-field{
+  font-family: inherit;
+}
+#submit {
+  background-color: #ffeb3b;
+  color: #213464;
+  font-family: inherit;
+}
+// #selection{
+//   // margin-right: 30%;
+// }
+.example-section {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 60px;
+}
+// section{
+//   // text-align: right;
+// }
+.example-margin {
+  margin: 0 10px;
+  font-family: inherit;
+}
+.input-group-text {
+  // color: #213464 !important;
+  background-color: white !important;
+  border-color: #213464;
+  // border-top-right-radius: .25rem !important;
+  // border-bottom-right-radius: .25rem !important;
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+}
+#labelNewCity {
+  border-top-right-radius: 0 !important !important;
+  border-bottom-right-radius: 0 !important !important;
+}
+// .input-group[_ngcontent-eoc-c9] > .custom-select[_ngcontent-eoc-c9]:not(:first-child) {
+//   border-color: #213464;
+//   border-top-right-radius: 0 !important;
+//   border-bottom-right-radius: 0 !important;
+//   /* border-top-left-radius: 0.25rem; */
+//   /* border-bottom-left-radius: 0.25rem;*/
+.input-group > .custom-select:not(:first-child) {
+  border-color: #213464;
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+  // border-top-left-radius: .25rem;
+  // border-bottom-left-radius: .25rem;
+}
+// padding-top: 0.1rem!important;

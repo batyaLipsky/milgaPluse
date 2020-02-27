@@ -1,0 +1,131 @@
+.searchResult,
+.example-form,
+.example-button-row {
+  font-family: inherit !important;
+}
+.example-button-row button,
+.example-button-row a {
+  margin-right: 8px;
+}
+mat-form-field {
+  margin-right: 12px;
+}
+.mat-form-field {
+  text-align: right;
+  margin-right: 0;
+  font-family: inherit;
+}
+.p-5 {
+  padding-top: 0rem !important;
+}
+.example-headers-align .mat-expansion-panel-header-title,
+.example-headers-align .mat-expansion-panel-header-description {
+  flex-basis: 0;
+}
+
+.example-headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+#oldOrNewScholarshipButton {
+  text-align: center;
+}
+
+.mat-accordion > .mat-expansion-panel-spacing:first-child,
+.mat-accordion > :first-child:not(.mat-expansion-panel) .mat-expansion-panel-spacing {
+  margin-top: 5%;
+}
+#searchResult {
+  margin-top: 5%;
+}
+#form {
+  padding-bottom: 20px !important;
+}
+.mat-expansion-panel-header {
+  font-family: inherit;
+}
+button {
+  font-family: inherit;
+}
+#oldOrNewScholarshipButton {
+  margin-top: 4%;
+}
+div {
+  font-family: inherit;
+}
+.scholarshipButton {
+  color: #213464 !important;
+  font-family: inherit !important;
+}
+.buttonClickedScholarship {
+  background-color: #213464 !important;
+  color: #ffeb3b !important;
+}
+
+#searchData {
+  display: inherit;
+}
+.mat-button.mat-primary {
+  color: #213464;
+}
+.mat-button.mat-primary {
+  color: #ffeb3b !important;
+}
+.mat-button-focus-overlay {
+  background: #ffeb3b;
+}
+
+.mat-button.mat-warn {
+  color: #213464 !important;
+}
+.mat-button.mat-warn .mat-button-focus-overlay {
+  background-color: #213464 !important;
+  // opacity: 0;
+}
+.mat-button.mat-primary .mat-button-focus-overlay {
+  background-color: #ff9f04 !important;
+}
+section {
+  text-align: center;
+}
+h4 {
+  text-align: center;
+  color: #213464;
+}
+.warpBttonANDInput {
+  display: flex;
+}
+.bttonANDInput {
+  width: 50%;
+}
+.moneyOffIcon {
+  color: #ffd7408c;
+}
+.attachMoneyIcon {
+  color: #213464;
+}
+.calculateDebtBTN {
+  border: 0.5px solid;
+  z-index: 1;
+}
+.calculateDebtBTN {
+  font-family: inherit;
+  border: 0.5px solid #213464;
+  border-radius: 0rem;
+}
+.mat-checkbox{
+  font-family: inherit;
+}
+@media (min-width: 768px) {
+  .col-md-4 {
+    max-width: 30% !important;
+  }
+  .errResultInSmallScreen{
+    visibility: hidden;
+  }
+}
+@media(max-width:360px){
+  h6{
+    font-size: 0.8rem;
+  }
+}

@@ -1,0 +1,78 @@
+<h4>הרב {{name}}</h4>
+<mat-dialog-content>
+    <form class="example-form text-center p-5" style="color:#213464;" #Form="ngForm">
+
+        <label for="wayToPay" id="example-radio-group-label">צורת תשלום</label>
+        <mat-radio-group aria-labelledby="example-radio-group-label" id="wayToPay" class="example-radio-group"
+            [(ngModel)]="returnLoan.WayOfPay" name="wayOfPay">
+            <mat-radio-button class="example-radio-button" (click)="allowedSave(value)" *ngFor="let way of waysOfPay"
+                [value]="way">
+                {{way}}
+            </mat-radio-button>
+        </mat-radio-group>
+        <!-- <div>Your favorite season is: {{wayOfPay}}</div> -->
+        <div class="col">
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="סכום" appOnlyNumberInput OnlyNumber="true" name="returnSum" type="text"
+                    id="returnSum" #returnsSum="ngModel" [(ngModel)]="returnLoan.LoanSum" class="form-control"
+                    required />
+                <mat-error *ngIf="returnsSum.untouched ||!returnsSum.valid ">
+                    <strong>חובה</strong> שדה
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col bankDetailes" *ngIf="returnLoan.WayOfPay==waysOfPay[1]">
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="מספר חשבון בנק" appOnlyNumberInput OnlyNumber="true" name="accountNumber"
+                    type="text" id="accountNumber" #accountNumber="ngModel"
+                    [(ngModel)]="bankAccountDetailes.AccountNumber" class="form-control" required
+                    (blur)="checkIfExistBankAccount()" />
+                <mat-error *ngIf="accountNumber.untouched ||!accountNumber.valid">
+                    <strong>חובה</strong> שדה
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="מספר סניף" appOnlyNumberInput OnlyNumber="true" name="branchNumber"
+                    type="text" id="branchNumber" #branchNumber="ngModel" [(ngModel)]="bankAccountDetailes.BranchNumber"
+                    class="form-control" (blur)="checkIfExistBankAccount()" required />
+                <mat-error *ngIf="branchNumber.untouched ||!branchNumber.valid ">
+                    <strong>חובה</strong> שדה
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col bankDetailes" *ngIf="!allDetailsForBankAccount&&returnLoan.WayOfPay==waysOfPay[1]">
+
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="שם הבנק" appOnlyHebrewLettersInput OnlyHebrewLetters="true" name="bankName"
+                    type="text" id="bankName" #bankName="ngModel" [(ngModel)]="bankAccountDetailes.bankName"
+                    class="form-control" required />
+                <mat-error *ngIf="bankName.untouched ||!bankName.valid ">
+                    <strong>חובה</strong> שדה
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="מספר בנק" appOnlyNumberInput OnlyNumber="true" name="bankNumber"
+                    type="text" id="bankNumber" maxlength="3" minlength="2" #bankNumber="ngModel"
+                    [(ngModel)]="bankAccountDetailes.BankNumber" class="form-control" required maxlength="2"
+                    minlength="2" />
+                <mat-error *ngIf="bankNumber.untouched ||!bankNumber.valid ">
+                    <strong>חובה</strong> שדה
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col">
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="הערות" name="noteOfReturnLoan" type="text" id="noteOfReturnLoan"
+                    #noteOfReturnLoan="ngModel" [(ngModel)]="returnLoan.NoteOfReturnLoan" class="form-control" />
+            </mat-form-field>
+        </div>
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button class="mat-raised-button" (click)="close()">סגור</button>
+    <button class="mat-raised-button mat-primary" [disabled]="!Form.form.valid" (click)="save()">שמור</button>
+</mat-dialog-actions>
+<!-- !alloweSave&& -->

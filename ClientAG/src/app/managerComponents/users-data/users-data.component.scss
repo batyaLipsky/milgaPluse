@@ -1,0 +1,43 @@
+th,
+td {
+  border-bottom: 2px solid #213363 !important;
+}
+.titleOfPage {
+  text-align: center;
+}
+#notFoundResult {
+  text-align: center;
+}
+.otherSearch {
+  width: 100%;
+  margin-bottom: 15px;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+a {
+  cursor: pointer !important;
+}
+a:hover {
+  color: inherit !important;
+  text-decoration: inherit !important;
+}
+.table-responsive {
+  transform: rotateX(180deg);
+  overflow-x: auto;
+}
+table {
+  text-align: center;
+  transform: rotateX(180deg);
+}
+.table thead th {
+  padding-top: 0;
+  vertical-align: middle;
+}
+th {
+  position: sticky;
+  top: 0;
+}
+button,
+a {
+  font-family: inherit;
+}

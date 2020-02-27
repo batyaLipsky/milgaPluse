@@ -1,0 +1,49 @@
+<div class="divContainer">
+    <div class="sticky-top">
+        <button id="topIcon" mat-icon-button [matMenuTriggerFor]="menu"
+            class="d-block d-sm-none d-none d-sm-block d-md-none" aria-label="Example icon-button with a menu">
+            <mat-icon id="iconButton">more_vert</mat-icon>
+        </button>
+    </div>
+    <mat-menu #menu="matMenu" class="d-block d-sm-none d-none d-sm-block d-md-none">
+        <ul class="topnav">
+            <li class="topNavPhon right" aria-disabled="true"><a id="name">הרב {{thisUser.LastName}} </a></li>
+            <li class="topNavPhon"><a class="onVisit" href="login" (click)="changeClasses(0)">יציאה</a></li>
+            <li class="changeDefinition topNavPhon"><a class="onVisit" (click)="changeSystem(); changeClasses(1)">שנה הגדרות
+                    מערכת</a></li>
+        </ul>
+
+    </mat-menu>
+
+    <div class="d-none d-xl-block d-lg-block d-md-block">
+        <ul class="topnav">
+            <li><a class="onVisit" href="login" (click)="changeClasses(0)">יציאה</a></li>
+            <li class="changeDefinition"><a class="onVisit" (click)="changeSystem(); changeClasses(1)">שנה הגדרות
+                    מערכת</a></li>
+            <li class="right" aria-disabled="true"><a id="name">הרב {{thisUser.LastName}} </a></li>
+        </ul>
+    </div>
+    <app-modal-enter-manager (clicked)="change_wayToOpen()" *ngIf="showModalForChooseWayToOpen">
+    </app-modal-enter-manager>
+    <app-background-images *ngIf="wayToOpen&&wayToOpen!=1&&wayToOpen!=3&&showImages"></app-background-images>
+    <div class="thisBody row" *ngIf="wayToOpen&&(wayToOpen==1||wayToOpen==3)">
+        <div class="col-sm-9">
+            <!-- load components in the manager side -->
+            <router-outlet id="routerOutlet"></router-outlet>
+        </div>
+        <div class="col-sm-3 d-none d-xl-block d-lg-block d-md-block">
+            <!--sidebar-->
+            <app-main-manager-side-bar></app-main-manager-side-bar>
+        </div>
+    </div>
+    <div id="iconButton" class="fixed-bottom">
+        <button mat-icon-button [matMenuTriggerFor]="sideBarMenue" class="d-block d-sm-none d-none d-sm-block d-md-none"
+            aria-label="Example icon-button with a menu">
+            <mat-icon id="bottomIcon">menu </mat-icon>
+        </button>
+    </div>
+    <mat-menu #sideBarMenue="matMenu" class="d-block d-sm-none d-none d-sm-block d-md-none">
+        <app-main-manager-side-bar (click) = "$event.stopPropagation()" ></app-main-manager-side-bar>
+
+    </mat-menu>
+</div>

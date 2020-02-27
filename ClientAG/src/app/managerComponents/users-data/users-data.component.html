@@ -1,0 +1,89 @@
+<h4 class="titleOfPage" dir="rtl">פרטי אברכים</h4>
+<h5 class="titleOfPage" *ngIf="!searchHistory" dir="rtl">שלמדו בעבר בכולל</h5>
+<h5 class="titleOfPage" *ngIf="searchHistory" dir="rtl">שלומדים כיום בכולל</h5>
+
+<hr>
+<a mat-stroked-button class="otherSearch" *ngIf="searchHistory"
+  (click)="getAllHistoryUsers();searchHistory=!searchHistory;">חיפוש נתוני
+  אברכים שלמדו בכולל
+  בעבר</a>
+<a mat-stroked-button class="otherSearch" *ngIf="!searchHistory"
+  (click)="getAllActiveUsers();searchHistory=!searchHistory;">חיפוש נתוני אברכים שלומדים כיום בכולל</a>
+<div id="notFoundResult" class="responsive" *ngIf="allUsersDetailes==null||allUsersDetailes.length==0"
+  style="text-align: center;">לא נמצאו
+  תוצאות</div>
+
+
+
+ 
+<div class="table-responsive" *ngIf="allUsersDetailes&&allUsersDetailes.length>0">
+  <table mdbTable class="table table-hover">
+    <!-- *ngIf="isLoaded">-->
+    <thead>
+      <tr>
+        <th scope="let head of headElements;let i=index"></th>
+        <th *ngFor="let head of headElements" scope="col">{{head}} </th>
+        <th scope="col" *ngIf="searchHistory">עריכה</th>
+        <th scope="col" *ngIf="searchHistory">יצא מהכולל</th>
+        <th scope="col" *ngIf="!searchHistory">תאריך עזיבה</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- mdbTableCol -->
+      <tr *ngFor="let el of allUsersDetailes; let i =index">
+        <th>{{i+1}})</th>
+        <th scope="row">{{el.LastName}}</th>
+        <td>{{el.FirstName}}</td>
+        <td *ngIf="el.Street!=null">{{el.Street}} {{el.BuildingNumber}}
+          <p *ngIf="el.HomeNumber>0&&el.HomeNumber!=null"> דירה {{el.HomeNumber}}</p>
+        </td>
+        <td *ngIf="el.Street==null"> - </td>
+
+        <td *ngIf="el.City!=null">
+          <div *ngFor="let cty of allCitiesOfUsers">
+            <p *ngIf="cty.Id==el.City">{{cty.CityName}}</p>
+          </div>
+        </td>
+        <td *ngIf="el.City==null"> - </td>
+
+        <td *ngIf="el.ZipCode!=null">{{el.ZipCode}}</td>
+        <td *ngIf="el.ZipCode==null"> - </td>
+
+        <td *ngIf="el.Telephon!=null">{{el.Telephon}}</td>
+        <td *ngIf="el.Telephon==null"> - </td>
+
+        <td *ngIf="el.CellularTelephone1!=null">{{el.CellularTelephone1}}</td>
+        <td *ngIf="el.CellularTelephone1==null"> - </td>
+
+        <td *ngIf="el.CellularTelephone2!=null">{{el.CellularTelephone2}}</td>
+        <td *ngIf="el.CellularTelephone2==null"> - </td>
+
+        <td *ngIf="el.Email!=null">{{el.Email}}</td>
+        <td *ngIf="el.Email==null"> - </td>
+
+        <td *ngIf="el.BirthDate_day!=null">{{el.BirthDate_day}} {{el.BirthDate_month}}, {{el.BirthDate_year}} </td>
+        <td *ngIf="el.BirthDate_day==null"> - </td>
+        <td>{{el.Children}}</td>
+        <!-- <td *ngIf="el.LearnMusar">&#10003;</td>
+        <td; *ngIf="!el.LearnMusar">&#10007;</td> -->
+        <td *ngIf="el.FullDay">&#10003;</td>
+        <td *ngIf="!el.FullDay">&#10007;</td>
+        <td *ngIf="el.DoingTest">&#10003;</td>
+        <td *ngIf="!el.DoingTest">&#10007;</td>
+        <td *ngIf="el.RefundTransportation">{{el.RefundTransportation}}</td>
+        <td *ngIf="!el.RefundTransportation">&#10007;</td>
+        <td *ngIf="el.IsManager">&#10003;</td>
+        <td *ngIf="!el.IsManager">&#10007;</td>
+        <td *ngIf="searchHistory"><a mat-stroked-button (click)="goToEditDetailes(el)"
+            [routerLink]="['../edit_user_detailes_from_manager/true']">עריכה</a></td>
+        <td *ngIf="searchHistory"><button mat-stroked-button
+            (click)="contraryUserToDisable(el.Identity,el.LastName,el.FirstName)">יצא
+            מהכולל</button></td>
+        <th *ngIf="!searchHistory">{{datesOfLeaveInHebrew&&datesOfLeaveInHebrew[el.Identity]}}</th>
+
+          
+
+      </tr>
+    </tbody>
+  </table>
+</div>

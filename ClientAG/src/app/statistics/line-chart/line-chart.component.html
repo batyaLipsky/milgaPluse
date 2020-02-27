@@ -1,0 +1,48 @@
+<div class="flex">
+  <div class="flex-item">
+    <div style="display: block;">
+      <form id="params">
+        <div class="col">
+          <mat-form-field>
+            <input matInput type="text" class="form-control" id="numOfMonthsAgo" name="numOfMonthsAgo"
+              #numOfMonthsAgo="ngModel" [(ngModel)]="numMonthsAgo" placeholder="הקש מספר חודשים" (change)="openChart()"
+               appOnlyNumberInput OnlyNumber="true" required>
+            <mat-error *ngIf="!numOfMonthsAgo.valid">
+              שדה <strong>חובה</strong>. נא הקש מספר בין 1-12
+            </mat-error>
+            <!-- <mat-error *ngIf="monthErr?true:false">&&numOfMonthsAgo.touched 
+            נא הקש מספר בין 1-12
+            </mat-error> -->
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field>
+            <input matInput type="text" class="form-control" id="identityTag" name="identityTag" #identity="ngModel"
+              [(ngModel)]="identityVal" placeholder="הקש מספר זהות של אברך" (change)="getUserById()" minlength="9"
+              maxlength="9" appOnlyNumberInput OnlyNumber="true" required />
+            <mat-error *ngIf="!identity.valid">
+              שדה <strong>חובה</strong> עם 9 מספרים
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </form>
+      <!-- </div> -->
+      <canvas *ngIf="showChart" baseChart width="400" height="400" [datasets]="lineChartData" [labels]="lineChartLabels"
+        [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType"
+        [plugins]="lineChartPlugins" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+    </div>
+  </div>
+  <div class="flex-item" *ngIf="showChart">
+    <table class="table table-responsive table-condensed">
+      <tr>
+        <th></th>
+        <th *ngFor="let label of lineChartLabels">{{label}}</th>
+      </tr>
+      <tr *ngFor="let d of lineChartData; let i=index" [class]="'line-'+i">
+        <td *ngIf="i==0&&lineChartData.length">ממוצע כללי</td>
+        <td *ngIf="i!=0&&lineChartData.length">הרב {{user.LastName}}</td>
+        <td *ngFor="let label of lineChartLabels; let j=index">{{d && d.data[j]}}</td>
+      </tr>
+    </table>
+  </div>
+</div>

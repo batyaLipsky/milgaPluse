@@ -1,0 +1,41 @@
+<div id="iconButton" class="sticky-top">
+    <button mat-icon-button [matMenuTriggerFor]="menu" class="d-block d-sm-none d-none d-sm-block d-md-none"
+        aria-label="Example icon-button with a menu">
+        <mat-icon>more_vert</mat-icon>
+    </button>
+</div>
+<mat-menu #menu="matMenu" id="menueOnClickIcon" class="d-block d-sm-none d-none d-sm-block d-md-none">
+    <ul class="topnav">
+        <li class="onVisit"><a href="login">יציאה</a></li>
+        <!-- <li class="onVisit"><a href="login">כניסה מחדש למערכת</a></li> -->
+        <li class="onVisit topBtnNoExit" *ngIf="thisUser.IsManager"><a (click)="accessThroughTheCode(null)"
+                routerLink="../main-manager">כנס כמנהל</a></li>
+        <li class="onVisit topBtnNoExit"><a (click)="editUser(1)" routerLink='edit_user_detailes/true'>עדכון פרטים</a></li>
+        <li class="onVisit topBtnNoExit"><a (click)="accessThroughTheCode(2)" routerLink="scholarship_data">נתוני מלגות</a>
+        </li>
+        <li id="right" aria-disabled="true"><a id="name">הרב {{thisUser.LastName}} </a></li>
+    </ul>
+
+</mat-menu>
+
+<div class="d-none d-xl-block d-lg-block d-md-block">
+    <ul class="topnav">
+        <li class="onVisit"><a href="login">יציאה</a></li>
+        <li class="onVisit topBtnNoExit" *ngIf="thisUser.IsManager"><a (click)="accessThroughTheCode(null)"
+                routerLink="../main-manager">כנס כמנהל</a></li>
+        <li class="onVisit topBtnNoExit"><a (click)="editUser(1)" routerLink='edit_user_detailes/true'>עדכון פרטים</a></li>
+        <li class="onVisit topBtnNoExit"><a (click)="accessThroughTheCode(2)" routerLink="scholarship_data">נתוני מלגות</a>
+        </li>
+        <li id="right" aria-disabled="true"><a id="name">הרב {{thisUser.LastName}} </a></li>
+     </ul>
+</div>
+
+
+<div class="thisBody row" >
+
+    <div class="col-sm-12">
+
+        <router-outlet id="routerOutlet"></router-outlet>
+    </div>
+    
+</div>

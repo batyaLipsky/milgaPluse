@@ -1,0 +1,57 @@
+h4 {
+  text-align: center;
+  color: #213464;
+}
+#selectFiles {
+  height: 0px;
+  width: 0px;
+  overflow: hidden;
+}
+// #buttonForInput {
+//   color: #213464;
+//   background-color: #faeb39;
+//   margin-bottom: 2%;
+// }
+.openFiles {
+  text-align: center;
+}
+.files {
+  font-family: inherit !important;
+  text-align: center;
+}
+
+.mat-card::ng-deep {
+  text-align: right;
+  margin: 5px !important;
+  font-family: inherit !important;
+  margin-right: 13px !important;
+}
+.mat-progress-bar-buffer {
+  background-color: #faf4bb !important;
+}
+mat-card.mat-card {
+  margin-right: 2%;
+  direction: ltr !important;
+}
+mat-icon {
+  color: #213464 !important;
+}
+.mat-progress-bar-fill::after {
+  background-color: #ffeb3b !important;
+}
+
+mat-file-upload-queue button {
+  display: none !important;
+}
+.mat-raised-button.mat-primary {
+  background-color: inherit;
+  color: #213464;
+}
+.mat-raised-button {
+  margin: 10px !important;
+}
+@media (min-width: 576px) {
+  .col-sm-9.mat-raised-button {
+    text-align: center !important;
+  }
+}

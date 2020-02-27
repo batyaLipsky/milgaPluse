@@ -1,0 +1,65 @@
+<div class="side-bar w3-sidebar w3-bar-block "><!--sticky-top-->
+  <mat-accordion>
+
+    <!--אברכים-->
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          אברכים
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="example-button-row">
+        <ul>
+          <li (click)="window.event.cancelBubble = true;"><a mat-button routerLink="users_data">נתוני אברכים</a></li>
+          <li (click)="window.event.cancelBubble = true;"><a mat-button routerLink="edit_user_detailes_from_manager/null">הוספת אברך חדש</a></li>
+        </ul>
+      </div>
+    </mat-expansion-panel>
+
+    <!--מלגות-->
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+
+          מלגות
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="example-button-row">
+        <ul>
+          <li (click)="window.event.cancelBubble = true;"><a mat-button routerLink="scholarship_data/false">נתוני מלגות</a></li>
+          <li (click)="window.event.cancelBubble = true;"><a mat-button routerLink="basic_milga_details">נתונים בסיסיים</a></li>
+          <li (click)="window.event.cancelBubble = true;"><a mat-button routerLink="scholarship_data/true">אישור מלגות</a></li>
+        </ul>
+      </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          קבצים
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="example-button-row">
+        <ul>
+          <li (click)="window.event.cancelBubble = true;"><a mat-button routerLink="upload">העלאה</a></li>
+          <li (click)="window.event.cancelBubble = true;"><a mat-button routerLink="download">הורדה</a></li>
+        </ul>
+      </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          ניתוח נתונים וסטטיסטיקה
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="example-button-row">
+        <ul>
+          <li (click)="window.event.cancelBubble = true;"><a mat-button routerLink="global_statistics">פילוח נתונים</a></li>
+          <li (click)="window.event.cancelBubble = true;"><a mat-button routerLink="select_specific_users_according_params">שליפת אברכים ע"פ פרמטר</a></li>
+        </ul>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+</div>

@@ -1,0 +1,84 @@
+mat-button,
+.side-bar {
+  font-family: inherit !important;
+}
+.mat-menu-panel{
+  background-color: #2134646b;
+}
+ul.topnav li {
+  float: left;
+  padding-left: 5%;
+}
+
+ul.topnav li a {
+  display: block;
+
+  text-align: left;
+  padding: 14px 16px;
+  /* display: inline; */
+  text-decoration: none;
+}
+.mat-expansion-panel-header,a.mat-button{
+  font-family: inherit
+}
+.mat-expansion-panel-content {
+  font-family: inherit !important;
+}
+ul.topnav li a:hover:not(.active) {
+  background-color: #f4f800;
+  color: #213464;
+}
+.example-button-row a {
+  margin-right: 8px;
+  text-decoration: none;
+}
+.sticky-top{
+  background-color: #213464;
+  direction: rtl;
+  z-index: 1;
+}
+a {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+a:hover {
+  color: #213464 !important;
+  background-color: #2134642e;
+}
+// ul.topnav{
+//   position: fixed;
+//   top: 0;
+//   width: 100%;
+// }
+ul li a.active {
+  background-color: #f4f800;
+  color: #213464;
+}
+li {
+  list-style-type: none;
+}
+ul.topnav li#right {
+  float: right;
+}
+
+ul.topnav li a#name:hover:not(.active) {
+  background-color: #213464 !important;
+  color: white !important;
+}
+.noActive:hover {
+  background-color: #213464 !important;
+  color: white !important;
+}
+a {
+  padding-right: 0;
+  margin-right: 0 !important;
+}
+ul {
+  text-align: start;
+}
+@media screen and (max-width: 600px) {
+  ul li.right,
+  ul li {
+    float: none;
+  }
+}

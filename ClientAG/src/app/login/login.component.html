@@ -1,0 +1,39 @@
+<div class="container ">
+  <form (ngSubmit)="login()" #newForm="ngForm" novalidate>
+      <div class="errMassege smallScreen" [hidden]=identity.valid||identity.untouched>
+          <div *ngIf="identity.errors && identity.errors.required">
+            מספר זהות <strong>חובה</strong>
+          </div>
+          <div *ngIf="identity.errors?.minlength||identity.errors?.maxlength">
+            מספר זהות חייב להכיל 9 מספרים
+          </div>
+        </div>
+        <div class="errMassege smallScreen" *ngIf="notFoundUser">
+          לא נמצא משתמש. בדוק מספר זהות ושם משתמש
+        </div>
+    <div class="form-group">
+      <input type="text" class="form-control col-md-6" id="identityTag" name="identityTag" #identity="ngModel"
+        [(ngModel)]="identityVal" placeholder="מספר זהות" minlength="9" maxlength="9" appOnlyNumberInput
+        OnlyNumber="true" required>
+      <input type="text" class="form-control col-md-6 " id="userNameTag" name="userNameTag" #userName="ngModel"
+        [(ngModel)]="userNameVal" placeholder="שם משתמש" required>
+
+
+      <button id="submit" type="submit" [disabled]="!newForm.form.valid" class="btn btn-primary">כניסה</button>
+    </div>
+    <div class="errMassege largeScreen" [hidden]=identity.valid||identity.untouched>
+      <div *ngIf="identity.errors && identity.errors.required">
+        מספר זהות <strong>חובה</strong>
+      </div>
+      <div *ngIf="identity.errors?.minlength||identity.errors?.maxlength">
+        מספר זהות חייב להכיל 9 מספרים
+      </div>
+    </div>
+    <div class="errMassege largeScreen" *ngIf="notFoundUser">
+      לא נמצא משתמש. בדוק מספר זהות ושם משתמש
+    </div>
+  </form>
+  <div class="container">
+    <div class="row">
+    </div>
+  </div>
