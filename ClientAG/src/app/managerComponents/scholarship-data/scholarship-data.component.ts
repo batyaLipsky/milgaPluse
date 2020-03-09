@@ -1,16 +1,10 @@
-import { Component, OnInit, ViewEncapsulation, AfterViewInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation,  ChangeDetectorRef } from '@angular/core';
 import { scholarship } from 'src/app/models/scholarship';
-// import { ManagerService } from 'src/app/services/manager/manager.service';
 import { user } from 'src/app/models/user';
-import { findIndex } from 'rxjs/operators';
 import { MatSnackBar, MatDialogRef, MatDialog, MatDialogConfig } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BOOL_TYPE } from '@angular/compiler/src/output/output_ast';
 import { ScholarshipService } from 'src/app/services/scholarship/scholarship.service';
-import { Num, CenterTabStop, HorizontalPosition } from 'docx';
-import { UserService } from 'src/app/services/user/user-service.service';
 import { SummaryLoanComponent } from '../summary-loan/summary-loan.component';
-import { currentId } from 'async_hooks';
 
 export class SnackBarOverviewExample {
   public constructor(private _snackBar: MatSnackBar) { }
@@ -19,7 +13,6 @@ export class SnackBarOverviewExample {
     this._snackBar.open(message, action, {
       duration: 2000,
     });
-    debugger;
   }
 
 }
@@ -31,8 +24,8 @@ export class SnackBarOverviewExample {
   encapsulation: ViewEncapsulation.None
 
 })
-export class ScholarshipDataComponent implements OnInit, AfterViewInit {
-  lastScholarshipForAllUsers: [][];
+export class ScholarshipDataComponent implements OnInit {
+  lastScholarshipForAllUsers: [][]=[];
   editScholarship: scholarship = new scholarship();
   errSearchResultInSmallScreen: string = '';
   currentUserIsManager: boolean;
@@ -52,18 +45,17 @@ export class ScholarshipDataComponent implements OnInit, AfterViewInit {
   toConfirm: any;
   openReturnLoan: boolean;
   filtersLoaded: Promise<boolean>;
+  openReturnDebt:boolean=false;
   public constructor(private dialog: MatDialog, private scholarshipService: ScholarshipService, private _snackBar: MatSnackBar, private router: Router, private route: ActivatedRoute, private cdr: ChangeDetectorRef) {
     this.toConfirm = JSON.parse(this.route.snapshot.paramMap.get('confirm'));
     if (this.toConfirm != this.routerParam_ifLoadToConfirm) {
       this.routerParam_ifLoadToConfirm = this.toConfirm;
+      console.log("on confirm: "+this.routerParam_ifLoadToConfirm)
       this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     }
   }
-  ngAfterViewInit() {
-    // console.log(this.previousMilga);
-  }
-  ngOnInit() {
 
+  ngOnInit() {
     this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
     if (this.currentUser.IsManager) {
       this.currentUserIsManager = true;
@@ -83,6 +75,7 @@ export class ScholarshipDataComponent implements OnInit, AfterViewInit {
     }
     this.signTheLastScholarship();
     this.alreadyapplyNewMilga();
+
   }
 
   alreadyapplyNewMilga() {
@@ -100,16 +93,18 @@ export class ScholarshipDataComponent implements OnInit, AfterViewInit {
 
   openMilgaAccordingParams(kindOfMilga: string) {
     if (kindOfMilga == "new") {
-      this.changeClasses(0);
-      this.showAsNewMilga = true;
-      this.step = 0;
+      this.openReturnDebt=false;
       var customObj = new scholarship();
       customObj.HebrewMonth = this.currentMonthAndYear[0];
       customObj.HebrewYear = this.currentMonthAndYear[1];
       this.previousMilga = [];
       this.previousMilga.push(customObj);
+      this.changeClasses(0);
+      this.showAsNewMilga = true;
+      this.step = 0;
     } else
       if (kindOfMilga == "old") {
+        this.openReturnDebt=true;
         this.showAsNewMilga = false;
         this.previousMilga = [];
         this.changeClasses(1);
@@ -121,6 +116,7 @@ export class ScholarshipDataComponent implements OnInit, AfterViewInit {
     this.previousMilga[numOfMilga].Identity = this.currentUser.Identity;
     this.scholarshipService.newScholarshipDetailes(this.previousMilga[numOfMilga]).subscribe(result => {
       alert(result)
+
       this.alreadyapplyNewMilga();
     },
       err => console.log(err));
@@ -145,11 +141,13 @@ export class ScholarshipDataComponent implements OnInit, AfterViewInit {
       this.scholarshipService.getAllScholarshipAccordingId(this.idForSearch).subscribe((sclrship: []) => {
         this.previousMilga = sclrship;
         this.chackIfReturnMilgaFromDB();
+        this.signTheLastScholarship();
       });
     else {
       this.scholarshipService.getScholarshipAccordingIdMonthYear(this.idForSearch, this.corectYearString, this.oldMilgaMonth).subscribe((sclrship: []) => {
         this.previousMilga = sclrship;
         this.chackIfReturnMilgaFromDB();
+        this.signTheLastScholarship();
       });
     }
 
@@ -186,6 +184,7 @@ export class ScholarshipDataComponent implements OnInit, AfterViewInit {
   signTheLastScholarship() {
     this.scholarshipService.getTheLastScholarshipForAllUser().subscribe((res: [][]) => {
       this.lastScholarshipForAllUsers = res;
+      console.log("lastScholarshipForAllUsers"+res)
     }, err => console.log(err))
   }
   setStep(index: number) {
@@ -210,7 +209,7 @@ export class ScholarshipDataComponent implements OnInit, AfterViewInit {
   approveMilgaDetailes(numOfMilga: number) {
     this.scholarshipService.calculateScholarship(this.previousMilga[numOfMilga]).subscribe((result: scholarship) => {
       this.previousMilga[numOfMilga] = result;
-      //  console.log(result)
+
     },
       err => console.log(err));
   }
@@ -221,24 +220,18 @@ export class ScholarshipDataComponent implements OnInit, AfterViewInit {
       if (sclrship.length > 0) {
         this.previousMilga = sclrship;
         localStorage.setItem("previousMilga", JSON.stringify(this.previousMilga));
-
         this.getUsersNamesAccordingId();
       }
     });
   }
 
   getUsersNamesAccordingId() {
-    // this.usersIdentities = [...new Set(this.previousMilga.map(x => x.Identity))];
-    this.scholarshipService.getNamesOfUsersOfScholarshipForConfirm([...new Set(this.previousMilga.map(x => x.Identity))]).subscribe((names: [][]) => {
+    this.usersIdentities = [...new Set(this.previousMilga.map(x => x.Identity))];
+    this.scholarshipService.getNamesOfUsersOfScholarshipForConfirm(this.usersIdentities).subscribe((names: [][]) => {
       this.identitiasAndNames = names;
-      // this.cdr.detectChanges();
-      this.previousMilga = JSON.parse(localStorage.getItem('previousMilga'));
-      // this.router.routeReuseStrategy.shouldReuseRoute = () => true; // this.filtersLoaded = Promise.resolve(true);
     }, err => {
       console.log(err);
-      alert(err);
     });
-    // this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
   saveConfirmMilga(numOfMilga: number) {
     this.scholarshipService.saveConfirmScholarship(this.previousMilga[numOfMilga]).subscribe(result => {
@@ -262,7 +255,6 @@ export class ScholarshipDataComponent implements OnInit, AfterViewInit {
         tabElements[0].classList.add("buttonClickedScholarship");
         return;
       }
-      // if (this.thisUser.IsManager == true)
     } else
       tabElements[1].classList.remove("buttonClickedScholarship");
 
@@ -273,7 +265,7 @@ export class ScholarshipDataComponent implements OnInit, AfterViewInit {
 
   openAddSummaryLoanDialog(numOfMilga) {
     localStorage.setItem("currentUserScholarship", JSON.stringify(this.previousMilga[numOfMilga]));
-    if (this.lastScholarshipForAllUsers[this.previousMilga[numOfMilga].Identity].Date == this.previousMilga[numOfMilga].Date)
+    if (this.routerParam_ifLoadToConfirm||(this.lastScholarshipForAllUsers&&this.lastScholarshipForAllUsers[this.previousMilga[numOfMilga].Identity].Date == this.previousMilga[numOfMilga].Date))
       this.openReturnLoan = true;
     else
       this.openReturnLoan = false;
@@ -296,6 +288,5 @@ export class ScholarshipDataComponent implements OnInit, AfterViewInit {
     dialogRef.componentInstance.closeDialog.subscribe(() => {
       localStorage.removeItem("currentUserScholarship");
     }, err => { console.log(err); alert(err) });
-
   }
 }

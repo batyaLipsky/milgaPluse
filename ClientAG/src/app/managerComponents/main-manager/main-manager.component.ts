@@ -21,7 +21,6 @@ export class MainManagerComponent implements OnInit {
   }
 
   ngOnInit() {
-    debugger;
     this.thisUser = JSON.parse(localStorage.getItem("currentUser"));
     this.userService.returnWayToOpenManager().subscribe((wayNum: number) => {
       this.wayToOpen = wayNum;

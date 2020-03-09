@@ -38,7 +38,7 @@
 <!-- <div *ngIf="filtersLoaded | async"> -->
 <div class="searchResult" *ngIf="previousMilga&&previousMilga.length!=0">
   <mat-accordion class="example-headers-align">
-    
+
     <mat-expansion-panel *ngFor="let milga of previousMilga;let i=index" [expanded]="step === i" (opened)="setStep(i)"
       hideToggle>
       <mat-expansion-panel-header>
@@ -46,11 +46,10 @@
           <h6 dir="rtl" *ngIf="milga">נתוני מלגה ר"ח {{milga.HebrewMonth}}, {{milga.HebrewYear}}&nbsp;
             {{identitiasAndNames&&identitiasAndNames[""+milga.Identity+""]}}</h6>
           <hr>
-          <div>
-            {{previousMilga}}{{i}}
-          </div>
-          <mat-icon *ngIf="lastScholarshipForAllUsers[milga.Identity].Date==milga.Date" class="attachMoneyIcon">
-            attach_money</mat-icon>
+          
+            <mat-icon *ngIf="openReturnDebt&&lastScholarshipForAllUsers[milga.Identity].Date==milga.Date" class="attachMoneyIcon">
+              attach_money</mat-icon>
+          
         </mat-panel-title>
       </mat-expansion-panel-header>
       <form class="example-form text-center p-5" style="color:#213464;" (ngSubmit)="newMilgaDetailes(i)"
