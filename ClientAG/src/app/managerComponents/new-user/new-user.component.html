@@ -45,7 +45,7 @@
       <!-- class="example-full-width" -->
       <mat-form-field>
         <input matInput placeholder="שם משתמש" appOnlyNumberInput OnlyNumber="true"
-          name="identity" type="text" id="UserName" #UserName="ngModel" [(ngModel)]="editUser.UserName"
+          name="UserName" type="text" id="UserName" #UserName="ngModel" [(ngModel)]="editUser.UserName"
           class="form-control" />
         <mat-error *ngIf="UserName.untouched ||!UserName.valid ">
           <strong>חובה</strong> שדה

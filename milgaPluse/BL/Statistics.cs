@@ -15,12 +15,21 @@ namespace BL
         {
             List<string> monthesNames = new List<string>();
             DateTime today = DateTime.Today;
-            if (today.Day > 28)
-                today = today.AddDays(-3);
             var ci = CultureInfo.CreateSpecificCulture("he-IL");
             ci.DateTimeFormat.Calendar = new HebrewCalendar();
-            for (var i = 0; i < num; i++)
-                monthesNames.Add(today.AddMonths(-i).ToString("MMM", ci));
+            //for (var i = 0; i < num; i++)
+            //    monthesNames.Add(today.AddMonths(-i).ToString("MMM", ci));
+            DateTime endOfMonth;
+            DateTime prevMonth = today;
+            for (int i = 0; i < num; i++)
+            {
+                endOfMonth = new DateTime(prevMonth.Year,
+                                   prevMonth.Month,
+                                   DateTime.DaysInMonth(prevMonth.Year,
+                                                        prevMonth.Month));
+                prevMonth = prevMonth.AddDays(-(endOfMonth.Day) + 1);
+                monthesNames.Add(prevMonth.ToString("MMM", ci));
+            }
             monthesNames.Reverse();
             return monthesNames;
         }
@@ -30,12 +39,21 @@ namespace BL
         {
             Dictionary<string, float> monthesNamesAndAtmada = new Dictionary<string, float>();
             DateTime today = DateTime.Today;
-            if (today.Day > 28)
-                today = today.AddDays(-3);
             var ci = CultureInfo.CreateSpecificCulture("he-IL");
             ci.DateTimeFormat.Calendar = new HebrewCalendar();
-            for (var i = 0; i < num; i++)
-                monthesNamesAndAtmada.Add(today.AddMonths(-i).ToString("MMM", ci), 0);
+            //for (var i = 0; i < num; i++)
+            //    monthesNamesAndAtmada.Add(today.AddMonths(-i).ToString("MMM", ci), 0);
+            DateTime endOfMonth;
+            DateTime prevMonth = today;
+            for (int i = 0; i < num; i++)
+            {
+                endOfMonth = new DateTime(prevMonth.Year,
+                                   prevMonth.Month,
+                                   DateTime.DaysInMonth(prevMonth.Year,
+                                                        prevMonth.Month));
+                prevMonth = prevMonth.AddDays(-(endOfMonth.Day) + 1);
+                monthesNamesAndAtmada.Add(prevMonth.ToString("MMM", ci), 0);
+            }
             monthesNamesAndAtmada.Reverse();
             DateTime XMonthAgo = today.AddMonths(-(num + 1));
             List<DAL.Scholarships> scholarships = ProtectedDataMembers.db.Scholarships.Where(x => x.Confirm && monthesNamesAndAtmada.Keys.Contains(x.HebrewMonth) && XMonthAgo < x.Date).ToList();
@@ -52,14 +70,23 @@ namespace BL
         {
             Dictionary<string, int> monthesNamesAndAtmada = new Dictionary<string, int>();
             DateTime today = DateTime.Today;
-            if (today.Day > 28)
-                today = today.AddDays(-3);
             var ci = CultureInfo.CreateSpecificCulture("he-IL");
             ci.DateTimeFormat.Calendar = new HebrewCalendar();
-            for (var i = 0; i < num; i++)
-                monthesNamesAndAtmada.Add(today.AddMonths(-i).ToString("MMM", ci), 0);
+            //for (var i = 0; i < num; i++)
+            //    monthesNamesAndAtmada.Add(today.AddMonths(-i).ToString("MMM", ci), 0);
+            DateTime endOfMonth;
+            DateTime prevMonth = today;
+            for (int i = 0; i < num; i++)
+            {
+                endOfMonth = new DateTime(prevMonth.Year,
+                                   prevMonth.Month,
+                                   DateTime.DaysInMonth(prevMonth.Year,
+                                                        prevMonth.Month));
+                prevMonth = prevMonth.AddDays(-(endOfMonth.Day) + 1);
+                monthesNamesAndAtmada.Add(prevMonth.ToString("MMM", ci), 0);
+            }
             monthesNamesAndAtmada.Reverse();
-            DateTime XMonthAgo =today.AddMonths(-(num + 1));
+            DateTime XMonthAgo = today.AddMonths(-(num + 1));
             List<DAL.Scholarships> scholarships = ProtectedDataMembers.db.Scholarships.Where(x => x.Identity == id && x.Confirm && monthesNamesAndAtmada.Keys.Contains(x.HebrewMonth) && XMonthAgo < x.Date).ToList();
             foreach (var item in scholarships)
             {
@@ -79,10 +106,21 @@ namespace BL
             if (today.Day > 28)
                 today = today.AddDays(-3);
             List<string> month = new List<string>();
-            for (int i = num; i >= 1; i--)
+            DateTime endOfMonth;
+            DateTime prevMonth = today;
+            //for (int i = num; i >= 1; i--)
+            //{
+            //    month.Add(today.AddMonths(-i).Month + "" + today.AddMonths(-i).Year);
+            //    monthesNamesAndLoans.Add(today.AddMonths(-i).ToString("MMM", ci), 0);
+            //}
+            monthesNamesAndLoans.Clear();month.Clear();
+            for (int i = num; i >=1; i--)
             {
-                month.Add(today.AddMonths(-i).Month + "" + today.AddMonths(-i).Year);
-                monthesNamesAndLoans.Add(today.AddMonths(-i).ToString("MMM", ci), 0);
+                prevMonth = today.AddMonths(-i);
+                endOfMonth = new DateTime(prevMonth.Year, prevMonth.Month, DateTime.DaysInMonth(prevMonth.Year, prevMonth.Month));
+                prevMonth = prevMonth.AddDays((endOfMonth.Day)-10);
+                month.Add(prevMonth.Month + "" + prevMonth.Year);
+                monthesNamesAndLoans.Add(prevMonth.ToString("MMM", ci), 0);
             }
             List<DAL.Loans> loans = ProtectedDataMembers.db.Loans.Where(x => month.Contains(x.ReturnLoanGeorgianDate.Month + "" + x.ReturnLoanGeorgianDate.Year)).ToList();
             string hebrewMonth;
@@ -121,9 +159,9 @@ namespace BL
             try
             {
 
-//#pragma warning disable CS0618 // 'EntityFunctions' is obsolete: 'This class has been replaced by System.Data.Entity.DbFunctions.'
+                //#pragma warning disable CS0618 // 'EntityFunctions' is obsolete: 'This class has been replaced by System.Data.Entity.DbFunctions.'
                 var avg = ProtectedDataMembers.db.Users.Average(x => EntityFunctions.DiffDays(x.BirthDate_gregorian, DateTime.Today));//     .Ticks - .Ticks);
-//#pragma warning restore CS0618 // 'EntityFunctions' is obsolete: 'This class has been replaced by System.Data.Entity.DbFunctions.'
+                                                                                                                                      //#pragma warning restore CS0618 // 'EntityFunctions' is obsolete: 'This class has been replaced by System.Data.Entity.DbFunctions.'
                 Avg = (double)(avg / 365.2425);
             }
             catch (Exception ex)
@@ -191,14 +229,21 @@ namespace BL
 
             Dictionary<string, float> monthesNamesAndSmiratSdarim = new Dictionary<string, float>();
             DateTime today = DateTime.Today;
-            if (today.Day > 28)
-                today =today.AddDays(-3);
-            
+            //if (today.Day > 28)
+            //    today = today.AddDays(-3);
+            monthesNamesAndSmiratSdarim.Clear();
             List<string> month = new List<string>();
-            for (int i = 0; i <num; i++)
+            DateTime endOfMonth;
+            DateTime prevMonth = today;
+            for (int i = 0; i < num; i++)
             {
-                month.Add(today.AddMonths(-i).Month + "" + today.AddMonths(-i).Year);
-                monthesNamesAndSmiratSdarim.Add(today.AddMonths(-i).ToString("MMM", ci), 0);
+                endOfMonth = new DateTime(prevMonth.Year,
+                                   prevMonth.Month,
+                                   DateTime.DaysInMonth(prevMonth.Year,
+                                                        prevMonth.Month));
+                prevMonth = prevMonth.AddDays(-(endOfMonth.Day) + 1);
+                month.Add(prevMonth.Month + "" + prevMonth.Year);
+                monthesNamesAndSmiratSdarim.Add(prevMonth.ToString("MMM", ci), 0);
             }
             List<DAL.Scholarships> scholarships = ProtectedDataMembers.db.Scholarships.Where(x => month.Contains(x.Date.Month + "" + x.Date.Year)).ToList();
             string hebrewMonth;
@@ -218,12 +263,19 @@ namespace BL
         {
             Dictionary<string, int> monthesNamesAndSmiratSdarim = new Dictionary<string, int>();
             DateTime today = DateTime.Today;
-            if (today.Day > 28)
-                today = today.AddDays(-3);
             var ci = CultureInfo.CreateSpecificCulture("he-IL");
             ci.DateTimeFormat.Calendar = new HebrewCalendar();
-            for (var i = 0; i <num; i++)
-                monthesNamesAndSmiratSdarim.Add(today.AddMonths(-i).ToString("MMM", ci), 0);
+            DateTime endOfMonth;
+            DateTime prevMonth = today;
+            for (int i = 0; i < num; i++)
+            {
+                endOfMonth = new DateTime(prevMonth.Year,
+                                   prevMonth.Month,
+                                   DateTime.DaysInMonth(prevMonth.Year,
+                                                        prevMonth.Month));
+                prevMonth = prevMonth.AddDays(-(endOfMonth.Day) + 1);
+                monthesNamesAndSmiratSdarim.Add(prevMonth.ToString("MMM", ci), 0);
+            }
             monthesNamesAndSmiratSdarim.Reverse();
             DateTime XMonthAgo = today.AddMonths(-(num + 1));
             List<DAL.Scholarships> scholarships = ProtectedDataMembers.db.Scholarships.Where(x => x.Identity == id && x.Confirm && monthesNamesAndSmiratSdarim.Keys.Contains(x.HebrewMonth) && XMonthAgo < x.Date).ToList();
@@ -246,6 +298,7 @@ namespace BL
             ci.DateTimeFormat.Calendar = new HebrewCalendar();
             for (var i = num; i > 0; i--)
                 monthesNamesAndMarks.Add(DateTime.Today.AddMonths(-i).ToString("MMM", ci), 0);
+
             //monthesNamesAndMarks.Reverse();
             DateTime XMonthAgo = DateTime.Today.AddMonths(-(num + 1));
             List<DAL.Scholarships> scholarships = ProtectedDataMembers.db.Scholarships.Where(x => x.Identity == id && x.Confirm && monthesNamesAndMarks.Keys.Contains(x.HebrewMonth) && XMonthAgo < x.Date).ToList();
@@ -291,9 +344,9 @@ namespace BL
             }
             return selectedUsers;
         }
-       
+
         //<summary> inner function that search the data
-        private static List<DAL.Users> GetUsersList_switch(List<DAL.Users> selectedUsers, 
+        private static List<DAL.Users> GetUsersList_switch(List<DAL.Users> selectedUsers,
                                                             string nameOfParamForSearch, object paramForSearch)
         {
             switch (nameOfParamForSearch)
@@ -385,7 +438,7 @@ namespace BL
                 }
                 return selectedScholarship;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return new List<Scholarships>();
             }
@@ -397,7 +450,7 @@ namespace BL
             if (data.Length < 2)
                 return new List<DAL.Scholarships>();
             List<DAL.Scholarships> selectedLoan = new List<DAL.Scholarships>();
-            selectedLoan = ProtectedDataMembers.db.Scholarships.Where(schlr=>schlr.RemainderDebt>0).ToList();
+            selectedLoan = ProtectedDataMembers.db.Scholarships.Where(schlr => schlr.RemainderDebt > 0).ToList();
             Dictionary<string, object> searchData = new Dictionary<string, object>();
             var dict = data.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
             if (dict.Length < 2)
@@ -411,7 +464,7 @@ namespace BL
             }
             return selectedLoan.OrderBy(loan => loan.Users.LastName).ThenBy(loan => loan.Users.FirstName).ToList();
         }
-       
+
         //<summary> inner function that search the data
         private static List<DAL.Scholarships> GetLoansList_switch(List<DAL.Scholarships> selectedLoans, string nameOfParamForSearch,
                                                                                                   object paramForSearch)

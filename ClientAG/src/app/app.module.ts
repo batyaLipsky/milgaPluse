@@ -42,11 +42,13 @@ import { LineChartComponent } from './statistics/line-chart/line-chart.component
 import { BarChartComponent } from './statistics/bar-chart/bar-chart.component';
 import { UserService } from './services/user/user-service.service';
 //import { ConfirmScholarshipsComponent } from './managerComponents/confirm-scholarships/confirm-scholarships.component';
-import { MatFileUploadModule } from 'angular-material-fileupload';
+//import { MatFileUploadModule } from 'angular-material-fileupload';
 import { UploadFilesComponent } from './managerComponents/files/upload-files/upload-files.component';
 import { DownloadFilesComponent } from './managerComponents/files/download-files/download-files.component';
 import { SummaryLoanComponent } from './managerComponents/summary-loan/summary-loan.component';
 import { ScholarshipService } from './services/scholarship/scholarship.service';
+
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -80,7 +82,7 @@ import { ScholarshipService } from './services/scholarship/scholarship.service';
     SummaryLoanComponent,
   ],
   imports: [
-    MatFileUploadModule,
+    //MatFileUploadModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -95,7 +97,12 @@ import { ScholarshipService } from './services/scholarship/scholarship.service';
   ], entryComponents: [
     BirthDateModalComponent, LoanDialogComponent, SummaryLoanComponent],
 
-  providers: [UserService, ScholarshipService],
+  providers: [
+    // {
+    //   provide: [LocationStrategy],
+    //   useClass: HashLocationStrategy
+    // },
+    UserService, ScholarshipService],
   bootstrap: [AppComponent]
 
 })

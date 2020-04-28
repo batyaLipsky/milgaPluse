@@ -6,3 +6,14 @@ E:\milgaPluse\milgaPluse\BL\bin\Debug\EASendMail.dll
 E:\milgaPluse\milgaPluse\BL\bin\Debug\DAL.pdb
 E:\milgaPluse\milgaPluse\BL\obj\Debug\BL.dll
 E:\milgaPluse\milgaPluse\BL\obj\Debug\BL.pdb
+C:\Users\משתמש\Desktop\git-milgaPlus\milgaPluse\milgaPluse\BL\bin\Debug\BL.dll
+C:\Users\משתמש\Desktop\git-milgaPlus\milgaPluse\milgaPluse\BL\bin\Debug\BL.pdb
+C:\Users\משתמש\Desktop\git-milgaPlus\milgaPluse\milgaPluse\BL\bin\Debug\DAL.dll
+C:\Users\משתמש\Desktop\git-milgaPlus\milgaPluse\milgaPluse\BL\bin\Debug\EASendMail.dll
+C:\Users\משתמש\Desktop\git-milgaPlus\milgaPluse\milgaPluse\BL\bin\Debug\DAL.pdb
+C:\Users\משתמש\Desktop\git-milgaPlus\milgaPluse\milgaPluse\BL\obj\Debug\BL.dll
+C:\Users\משתמש\Desktop\git-milgaPlus\milgaPluse\milgaPluse\BL\obj\Debug\BL.pdb
+C:\Users\משתמש\Desktop\git-milgaPlus\milgaPluse\milgaPluse\BL\bin\Debug\DAL.dll.config
+C:\Users\משתמש\Desktop\git-milgaPlus\milgaPluse\milgaPluse\BL\obj\Debug\BL.csprojAssemblyReference.cache
+C:\Users\משתמש\Desktop\git-milgaPlus\milgaPluse\milgaPluse\BL\obj\Debug\BL.csproj.CoreCompileInputs.cache
+C:\Users\משתמש\Desktop\git-milgaPlus\milgaPluse\milgaPluse\BL\obj\Debug\BL.csproj.CopyComplete
